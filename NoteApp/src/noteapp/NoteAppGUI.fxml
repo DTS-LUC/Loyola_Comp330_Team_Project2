@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="noteapp.NoteAppGUIController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #118866;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXListView fx:id="noteListView" prefHeight="408.0" prefWidth="199.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="50.0" />
+            <JFXTextField fx:id="searchField" focusColor="WHITE" prefHeight="25.0" prefWidth="125.0" promptText="Search..." unFocusColor="#999999" AnchorPane.bottomAnchor="470.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="5.0" />
+            <JFXComboBox fx:id="sortBox" focusColor="WHITE" layoutX="148.0" layoutY="5.0" prefHeight="25.0" prefWidth="73.0" promptText="Sort" unFocusColor="#999999" AnchorPane.bottomAnchor="470.0" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f8ecc2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="51.0" prefWidth="500.0" style="-fx-background-color: #A0A0A0;" AnchorPane.bottomAnchor="452.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTextField fx:id="noteTitle" focusColor="#4d4d4d" layoutX="14.0" layoutY="14.0" prefHeight="33.0" prefWidth="186.0" text="Note Title" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXButton fx:id="removeBtn" alignment="CENTER" layoutX="386.0" layoutY="8.0" onAction="#removeNote" style="-fx-background-color: #a83434;" text="Remove" textFill="WHITE" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="newBtn" alignment="CENTER" layoutX="250.0" layoutY="10.0" style="-fx-background-color: #0ee000;" text="New" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXToggleButton fx:id="favToggle" contentDisplay="RIGHT" ellipsisString="" graphicTextGap="0.0" layoutX="191.0" layoutY="-3.0" prefHeight="28.0" prefWidth="50.0" text="Fav" textAlignment="JUSTIFY" textOverrun="CLIP" toggleColor="#f3ff47" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="233.0" AnchorPane.rightAnchor="212.0" AnchorPane.topAnchor="10.0" />
+                  <JFXButton fx:id="updateBtn" alignment="CENTER" layoutX="260.0" layoutY="20.0" style="-fx-background-color: #609dff;" text="Update" AnchorPane.rightAnchor="142.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <JFXTextArea fx:id="notePad" layoutY="80.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="58.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
