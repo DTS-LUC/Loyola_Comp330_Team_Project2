@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package noteapp;
+package noteapp.Controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,6 +18,8 @@ public class LoginController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

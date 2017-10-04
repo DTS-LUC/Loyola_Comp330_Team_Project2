@@ -8,7 +8,7 @@
  *
  * @author don
  */
-package noteapp;
+package noteapp.Controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
