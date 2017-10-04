@@ -26,6 +26,7 @@ public class NoteAppGUIController {
     @FXML
     private void removeNote(ActionEvent e){
         System.out.println("Remove button");
+        // TODO 
     }
     
     @FXML
@@ -33,6 +34,10 @@ public class NoteAppGUIController {
         System.out.println("New button");
     }
     
+    @FXML
+    private void updateNote(ActionEvent e){
+        System.out.println("Update button");
+    }
     
     @FXML
     private JFXTextField searchField;
