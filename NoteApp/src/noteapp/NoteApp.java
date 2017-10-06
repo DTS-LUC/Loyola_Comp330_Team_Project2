@@ -16,13 +16,14 @@ import javafx.stage.Stage;
  * @author don
  */
 public class NoteApp extends Application {
-    
+	// TODO:
+
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Scenes/Login.fxml"));
-        
+        Parent root = FXMLLoader.load(getClass().getResource("Scenes/NoteAppGUI.fxml"));
+
         Scene scene = new Scene(root);
-        
+
         stage.setScene(scene);
         stage.show();
     }
@@ -33,5 +34,5 @@ public class NoteApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

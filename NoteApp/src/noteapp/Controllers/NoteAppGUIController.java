@@ -26,19 +26,23 @@ public class NoteAppGUIController {
     @FXML
     private void removeNote(ActionEvent e){
         System.out.println("Remove button");
-        // TODO 
+        // TODO
     }
-    
+
     @FXML
     private void newNote(ActionEvent e){
         System.out.println("New button");
+				// TODO 
     }
-    
+
     @FXML
     private void updateNote(ActionEvent e){
         System.out.println("Update button");
+				// TODO
     }
-    
+
+		// TODO Fvorite toggle: Boolean value
+
     @FXML
     private JFXTextField searchField;
     @FXML
@@ -59,6 +63,6 @@ public class NoteAppGUIController {
     private JFXTextArea notePad;
 
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    } 
+        // TODO Read notes from SQLite
+    }
 }
