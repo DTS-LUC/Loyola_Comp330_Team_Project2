@@ -8,9 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="NoteApp.jar" size="5013" download="eager" />
+    <jar href="NoteApp.jar" size="5099" download="eager" />
     <jar href="lib/jfoenix.jar" size="2386535" download="eager" />
-    <jar href="lib/sqlite-jdbc-3.20.0.jar" size="6637012" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="NoteApp" >
     <param name="requiredFXVersion" value="8.0+"/>
