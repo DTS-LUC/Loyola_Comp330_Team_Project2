@@ -21,27 +21,43 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+// TODO Lock window size
+
 public class NoteAppGUIController {
 
     @FXML
     private void removeNote(ActionEvent e){
         System.out.println("Remove button");
-        // TODO
+        // TODO create a function that deletes files
+        // Needs to get file name from 'noteTitle'
     }
 
     @FXML
     private void newNote(ActionEvent e){
         System.out.println("New button");
-				// TODO 
+	// TODO create a function that creates new files
+        // Asks user to confirm save
+        // Brings up a blank note
+        // Needs to take value from 'notePad' textArea
+        // Also saves the filename from 'noteTitle'
+    }
+
+    @FXML // Setup within the FXML file. Called on button click
+    private void updateNote(ActionEvent e){
+        //Once button is clicked method begins
+        System.out.println("Update button");
+        // To get text values call the name of the component
+        //  with '.getValue()'
+        System.out.println(notePad.getText());
+        // Program will then need to invoke the model class to update the values
     }
 
     @FXML
-    private void updateNote(ActionEvent e){
-        System.out.println("Update button");
-				// TODO
+    private void toggleFav(ActionEvent e){
+        System.out.println("Favorite's toggle");
+	// TODO toggles favorite value on note data.
+        // Need to svae this somewhere in the file
     }
-
-		// TODO Fvorite toggle: Boolean value
 
     @FXML
     private JFXTextField searchField;
