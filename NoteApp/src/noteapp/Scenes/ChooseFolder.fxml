@@ -6,21 +6,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0" prefWidth="272.0" style="-fx-background-color: #20120f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="noteapp.Controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0" prefWidth="272.0" style="-fx-background-color: #20120f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="noteapp.Controllers.ChooseFoldecController">
    <children>
       <AnchorPane layoutX="300.0" layoutY="50.0" prefHeight="306.0" prefWidth="232.0" style="-fx-background-color: #009933;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
          <children>
-            <Label alignment="CENTER" text="Locked" textFill="#d0cccc" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
+            <Label alignment="CENTER" layoutX="20.0" prefHeight="137.0" prefWidth="192.0" text="Choose Directory" textAlignment="CENTER" textFill="#d0cccc" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                <font>
-                  <Font size="54.0" />
+                  <Font size="41.0" />
                </font>
             </Label>
-            <JFXPasswordField focusColor="WHITE" layoutX="51.0" layoutY="160.0" promptText="password" unFocusColor="WHITE" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+            <JFXPasswordField focusColor="WHITE" layoutX="51.0" layoutY="160.0" promptText="Directory Path" unFocusColor="WHITE" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
                <font>
                   <Font name="SansSerif Italic" size="13.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton buttonType="RAISED" layoutX="63.0" layoutY="201.0" prefHeight="39.0" prefWidth="111.0" ripplerFill="BLACK" style="-fx-background-color: #00e64d;" text="Submit" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="180.0">
+            <JFXButton buttonType="RAISED" layoutX="63.0" layoutY="201.0" onAction="#getDirectory" prefHeight="39.0" prefWidth="111.0" ripplerFill="BLACK" style="-fx-background-color: #00e64d;" text="Submit" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="180.0">
                <font>
                   <Font name="System Italic" size="20.0" />
                </font>

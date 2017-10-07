@@ -16,7 +16,6 @@ import javafx.stage.Stage;
  * @author don
  */
 public class NoteApp extends Application {
-	// TODO:
 
     @Override
     public void start(Stage stage) throws Exception {
