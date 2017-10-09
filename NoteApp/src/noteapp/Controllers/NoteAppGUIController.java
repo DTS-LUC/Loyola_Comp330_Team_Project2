@@ -79,7 +79,7 @@ public class NoteAppGUIController {
 
 
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO initialize models
-				//
+
+				// Will need to send dirPath to model
     }
 }
