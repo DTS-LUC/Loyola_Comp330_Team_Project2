@@ -2,6 +2,7 @@ import java.util.regex.*;
 import java.util.*;
 
 public class NoteSorter{
+
 	public TreeMap<String,ArrayList<String>> sort(HashMap<String,String> files, String regPattern){
 	  // TreeMap store list of all identifiers
 	  // Key: identifier 	Value: fileName(s);
@@ -55,19 +56,20 @@ public class NoteSorter{
 	  }
 	  return matches;
 	}
-	
-	public static int countMatches(String theRegex, String key)
-	{
-		Pattern checkRegex = Pattern.compile(theRegex);
-		Matcher regexMatcher = pat.matcher(key);
-		int total =0;
-		while(regexMatcher.find())
-		{
-			if (regexMatcher.group().length() == 0) {
-						matches.add(regexMatcher.group().trim());
-						total++
-					}
-		}
-		return total;
-	}
+
+	// public static int countMatches(String theRegex, String key)
+	// {
+	// 	Pattern checkRegex = Pattern.compile(theRegex);
+	// 	Matcher regexMatcher = pat.matcher(key); // Cannot find pat
+	// 	int total =0;
+	// 	while(regexMatcher.find())
+	// 	{
+	// 		if (regexMatcher.group().length() == 0) {
+	// 					// What is the following line used for?
+	// 					matches.add(regexMatcher.group().trim()); // Cannot find matches
+	// 					total++;
+	// 				}
+	// 	}
+	// 	return total;
+	// }
 }
