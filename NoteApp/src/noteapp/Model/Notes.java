@@ -8,7 +8,7 @@ public class Notes{
 	// Key: id 					Value: fileName
 	TreeMap<String,String> ids = new TreeMap<String,String>();
 
-	private final String dirPath;
+//	private final String dirPath;
 
 	// TODO Create a constructor that recieves valid dirPath
 
