@@ -21,9 +21,26 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-// TODO Lock window size
-
 public class NoteAppGUIController {
+		@FXML
+		private JFXTextField searchField;
+		@FXML
+		private JFXComboBox<?> sortBox;
+		@FXML
+		private JFXTextField noteTitle;
+		@FXML
+		private JFXToggleButton favToggle;
+		@FXML
+		private JFXButton updateBtn;
+		@FXML
+		private JFXButton newBtn;
+		@FXML
+		private JFXButton removeBtn;
+		@FXML
+		private JFXListView<?> noteListViem;
+		@FXML
+		private JFXTextArea notePad;
+		//TODO Create global models so they can be called by controller methods
 
     @FXML
     private void removeNote(ActionEvent e){
@@ -59,26 +76,10 @@ public class NoteAppGUIController {
         // Need to svae this somewhere in the file
     }
 
-    @FXML
-    private JFXTextField searchField;
-    @FXML
-    private JFXComboBox<?> sortBox;
-    @FXML
-    private JFXTextField noteTitle;
-    @FXML
-    private JFXToggleButton favToggle;
-    @FXML
-    private JFXButton updateBtn;
-    @FXML
-    private JFXButton newBtn;
-    @FXML
-    private JFXButton removeBtn;
-    @FXML
-    private JFXListView<?> noteListViem;
-    @FXML
-    private JFXTextArea notePad;
+
 
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO Read notes from SQLite
+        // TODO initialize models
+				//
     }
 }
