@@ -23,11 +23,11 @@
  		this.files = retriever.getFiles(dirPath);
  		sortNotes();
  	}
-        
+
  	public void sortNotes(){
  		setMentions(sorter.sort(files, "@[a-zA-Z_][0-9a-zA-Z_]*"));
  		setTopics(sorter.sort(files, "#[a-zA-Z_][0-9a-zA-Z_]*"));
-// 		setIDs(sorter.getIDs(files));
+		// 		setIDs(sorter.getIDs(files));
  	}
  	// Methods for setting values
  	public void setMentions(TreeMap<String,ArrayList<String>> mentions){this.mentions = mentions;}
@@ -35,10 +35,15 @@
  	public void setIDs(TreeMap<String,String> ids){this.ids = ids;}
 
  	// Methods for retrieving all values in sorted order
-        public List<String> allNames(){
-            List<String> names = new ArrayList(files.keySet());
-            return names;
-        }
+  public List<String> allNames(){
+	  List<String> names = new ArrayList(files.keySet());
+		for (int i = 0; i < names.size(); i++) {
+			String name = names.get(i);
+                        name = name.substring(0, name.lastIndexOf("."));
+			names.set(i, name);
+		}
+	  return names;
+	}
  	public TreeMap<String,ArrayList<String>> allMentions(){return mentions;}
  	public TreeMap<String,ArrayList<String>> allTopics(){return topics;}
  	public TreeMap<String,String> allIDs(){return ids;}
@@ -66,9 +71,9 @@
  			selected = new ArrayList<String>();
  			selected = mentions.get( "#" + s);
  			selection.put( "#" + s, selected);
- 		}
+	 		}
 
- 		return selection;
+	 	return selection;
  	}
  	// Method for retrieving select ID value(s)
  	public TreeMap<String,String> findIDs(ArrayList<String> search){
@@ -100,7 +105,7 @@
  	public void removeNote(String noteName){
  		String fileName = noteName +".txt";
  		String filePath = dirPath + fileName;
-// 		editor.updateFile(filePath);
+		//editor.updateFile(filePath);
 
  		// Remove from files
 

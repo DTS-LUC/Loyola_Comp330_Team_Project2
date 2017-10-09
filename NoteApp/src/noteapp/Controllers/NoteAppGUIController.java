@@ -18,6 +18,8 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,9 +29,10 @@ import javafx.stage.DirectoryChooser;
 import noteapp.Model.Notes;
 
 public class NoteAppGUIController {
-Notes notes;
+		private Notes notes;
 // Lists;
-ObservableList<String> sorts = FXCollections.observableArrayList(" ","@", "#", "^");
+		private List<String> sorts = new ArrayList<>();
+		private List<String> noteList = new ArrayList<>();
 // JFX Objects
 		@FXML
 		private JFXTextField searchField;
@@ -39,7 +42,7 @@ ObservableList<String> sorts = FXCollections.observableArrayList(" ","@", "#", "
 		private JFXTextField noteTitle;
 		@FXML
 		private JFXToggleButton favToggle;
-                @FXML
+    @FXML
 		private JFXButton folderBtn;
 		@FXML
 		private JFXButton updateBtn;
@@ -48,12 +51,9 @@ ObservableList<String> sorts = FXCollections.observableArrayList(" ","@", "#", "
 		@FXML
 		private JFXButton removeBtn;
 		@FXML
-		private JFXListView<?> noteListView;
+		private JFXListView<String> noteListView;
 		@FXML
 		private JFXTextArea notePad;
-
-		//TODO Create global models so they can be called by controller methods
-		// private Notes notes;
 
 // ActionEvent Methods
     @FXML
@@ -70,14 +70,14 @@ ObservableList<String> sorts = FXCollections.observableArrayList(" ","@", "#", "
     @FXML
     private void newNote(ActionEvent e){
         System.out.println("New button");
-	// TODO create a function that creates new files
+				// TODO create a function that creates new files
         // Asks user to confirm save
         // Brings up a blank note
         // Needs to take value from 'notePad' textArea
         // Also saves the filename from 'noteTitle'
     }
 
-    @FXML // Setup within the FXML file. Called on button click
+    @FXML
     private void updateNote(ActionEvent e){
         //Once button is clicked method begins
         System.out.println("Update button");
@@ -99,18 +99,19 @@ ObservableList<String> sorts = FXCollections.observableArrayList(" ","@", "#", "
         // Open directory chooser
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Select a folder");
-        File selectedDirectory = directoryChooser.showDialog(null);
+        File selectedDirectory = null;
+				// Loop to make sure directory is chosen
+				while(selectedDirectory == null){
+					selectedDirectory = directoryChooser.showDialog(null);
+				}
 
-        if(selectedDirectory != null){
-            System.out.println(selectedDirectory.getAbsolutePath());
-        }else{
-
-        }
         // Create notes - send directory path
         this.notes = new Notes(selectedDirectory.getAbsolutePath());
         // Set List View Items
-
-	// Set values for sortBox
+				noteList = FXCollections.observableArrayList(notes.allNames());
+				noteListView.getItems().addAll(noteList);
+				// Set values for sortBox
+				sorts	= FXCollections.observableArrayList("","@", "#", "^");
         sortBox.getItems().addAll(sorts);
 
     }
