@@ -16,26 +16,31 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.DirectoryChooser;
+import noteapp.Model.Notes;
 
 public class NoteAppGUIController {
-
+Notes notes;
 // Lists;
-ObservableList<String> sorts = FXCollections.observableArrayList("@", "#", "^");
+ObservableList<String> sorts = FXCollections.observableArrayList(" ","@", "#", "^");
 // JFX Objects
 		@FXML
 		private JFXTextField searchField;
 		@FXML
-		private JFXComboBox<String> sortBox = new JFXComboBox<String>(sorts);
+		private JFXComboBox<String> sortBox;
 		@FXML
 		private JFXTextField noteTitle;
 		@FXML
 		private JFXToggleButton favToggle;
+                @FXML
+		private JFXButton folderBtn;
 		@FXML
 		private JFXButton updateBtn;
 		@FXML
@@ -46,6 +51,7 @@ ObservableList<String> sorts = FXCollections.observableArrayList("@", "#", "^");
 		private JFXListView<?> noteListView;
 		@FXML
 		private JFXTextArea notePad;
+
 		//TODO Create global models so they can be called by controller methods
 		// private Notes notes;
 
@@ -83,17 +89,29 @@ ObservableList<String> sorts = FXCollections.observableArrayList("@", "#", "^");
 
     @FXML
     private void toggleFav(ActionEvent e){
-        System.out.println("Favorite's toggle");
+
+        System.out.println("HI");
 				// TODO toggles favorite value on note data.
         // Need to svae this somewhere in the file
     }
 
+    public void initialize() {
+        // Open directory chooser
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select a folder");
+        File selectedDirectory = directoryChooser.showDialog(null);
 
-// When is this called?
-    public void initialize(URL url, ResourceBundle rb) {
-        // Will need to send dirPath to model
+        if(selectedDirectory != null){
+            System.out.println(selectedDirectory.getAbsolutePath());
+        }else{
+
+        }
+        // Create notes - send directory path
+        this.notes = new Notes(selectedDirectory.getAbsolutePath());
+        // Set List View Items
 
 	// Set values for sortBox
         sortBox.getItems().addAll(sorts);
-	}
+
+    }
 }

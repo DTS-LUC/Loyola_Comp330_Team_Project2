@@ -32,8 +32,8 @@ public class NoteRetriever{
 		return content;
 	}
 
-	public HashMap<String, String> getFiles(String dirPath){
-		HashMap<String, String> files = new HashMap<String, String>();
+	public TreeMap<String, String> getFiles(String dirPath){
+		TreeMap<String, String> files = new TreeMap<String, String>();
 		File folder = new File(dirPath);
 		String[] fileNames = listFiles(folder);
 
