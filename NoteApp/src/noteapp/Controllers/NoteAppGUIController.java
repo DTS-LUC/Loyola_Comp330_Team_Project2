@@ -20,12 +20,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class NoteAppGUIController {
+
+// Lists;
+ObservableList<String> sorts = FXCollections.observableArrayList("@", "#", "^");
+// JFX Objects
 		@FXML
 		private JFXTextField searchField;
 		@FXML
-		private JFXComboBox<?> sortBox;
+		private JFXComboBox<String> sortBox = new JFXComboBox<String>(sorts);
 		@FXML
 		private JFXTextField noteTitle;
 		@FXML
@@ -37,16 +43,22 @@ public class NoteAppGUIController {
 		@FXML
 		private JFXButton removeBtn;
 		@FXML
-		private JFXListView<?> noteListViem;
+		private JFXListView<?> noteListView;
 		@FXML
 		private JFXTextArea notePad;
 		//TODO Create global models so they can be called by controller methods
+		// private Notes notes;
 
+// ActionEvent Methods
     @FXML
     private void removeNote(ActionEvent e){
         System.out.println("Remove button");
         // TODO create a function that deletes files
-        // Needs to get file name from 'noteTitle'
+        // Needs to get noteName from 'noteTitle'
+				// String noteName = title.value()
+				// Sends noteName to removeNote in Notes
+				// notes.removeNote(noteName)
+				// Removes note from list
     }
 
     @FXML
@@ -72,14 +84,16 @@ public class NoteAppGUIController {
     @FXML
     private void toggleFav(ActionEvent e){
         System.out.println("Favorite's toggle");
-	// TODO toggles favorite value on note data.
+				// TODO toggles favorite value on note data.
         // Need to svae this somewhere in the file
     }
 
 
-
+// When is this called?
     public void initialize(URL url, ResourceBundle rb) {
+        // Will need to send dirPath to model
 
-				// Will need to send dirPath to model
-    }
+	// Set values for sortBox
+        sortBox.getItems().addAll(sorts);
+	}
 }

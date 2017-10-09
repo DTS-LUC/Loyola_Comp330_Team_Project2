@@ -1,3 +1,5 @@
+package noteapp.Model;
+
 import java.util.regex.*;
 import java.util.*;
 
