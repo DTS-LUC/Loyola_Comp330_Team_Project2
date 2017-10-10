@@ -1,16 +1,18 @@
  package noteapp.Model;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
  import java.util.*;
 
  public class Notes{
  	// Key: fileName 	Value: content
- 	TreeMap<String,String> files	= new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
+ 	TreeMap<String,String> files	= new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
  	// Key: ^id 			Value: fileName
- 	TreeMap<String,String> 	ids 	= new TreeMap<String,String>();
+ 	TreeMap<String,String> 	ids 	= new TreeMap<>();
  	// Key: @identifier Value: fileNames
- 	TreeMap<String,ArrayList<String>> mentions 	= new TreeMap<String,ArrayList<String>>();
+ 	TreeMap<String,ArrayList<String>> mentions 	= new TreeMap<>();
  	// Key: #identifier Value: fileNames
- 	TreeMap<String,ArrayList<String>> topics 		= new TreeMap<String,ArrayList<String>>();
+ 	TreeMap<String,ArrayList<String>> topics 		= new TreeMap<>();
 
  	NoteRetriever retriever = new NoteRetriever();
  	NoteSorter		sorter		= new NoteSorter();
@@ -36,7 +38,9 @@
 
  	// Methods for retrieving all values in sorted order
   public List<String> allNames(){
-	  List<String> names = new ArrayList(files.keySet());
+	  List<String> names = new ArrayList<>();
+          names.addAll(files.keySet());
+    // String name : names
 		for (int i = 0; i < names.size(); i++) {
 			String name = names.get(i);
                         name = name.substring(0, name.lastIndexOf("."));
@@ -51,11 +55,11 @@
  	// Method for retrieving select Mention value(s)
  	public TreeMap<String,ArrayList<String>> findMentions(ArrayList<String> search){
  		search.remove(0);
- 		TreeMap<String,ArrayList<String>> selection = new TreeMap<String,ArrayList<String>>(String.CASE_INSENSITIVE_ORDER);
+ 		TreeMap<String,ArrayList<String>> selection = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
  		ArrayList<String> selected;
 
  		for(String s:search) {
- 			selected = new ArrayList<String>(mentions.get("@" +s));
+ 			selected = new ArrayList<>(mentions.get("@" +s));
  			selection.put( "@" + s, selected);
  		}
 
@@ -64,11 +68,10 @@
  	// Method for retrieving select Topic value(s)
  	public TreeMap<String,ArrayList<String>> findTopics(ArrayList<String> search){
  		search.remove(0);
- 		TreeMap<String,ArrayList<String>> selection = new TreeMap<String,ArrayList<String>>(String.CASE_INSENSITIVE_ORDER);
+ 		TreeMap<String,ArrayList<String>> selection = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
  		ArrayList<String> selected;
 
  		for(String s:search) {
- 			selected = new ArrayList<String>();
  			selected = mentions.get( "#" + s);
  			selection.put( "#" + s, selected);
 	 		}
@@ -78,7 +81,7 @@
  	// Method for retrieving select ID value(s)
  	public TreeMap<String,String> findIDs(ArrayList<String> search){
  		search.remove(0);
- 		TreeMap<String,String> selection = new TreeMap<String,String>(String.CASE_INSENSITIVE_ORDER);
+ 		TreeMap<String,String> selection = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
  		String selected;
 
  		for(String s:search) {
@@ -89,27 +92,33 @@
  		return selection;
  	}
 
- 	// Method for updating a note
- 	public void updateNote(String noteName, String content){
+        // Method for retrieving note contents
+        public String getNote(String noteName){
+            String content = files.get(noteName + ".txt");
+            return content;
+        }
+
+ 	// Method for updating/adding a note
+ 	public void updateNote(String noteName, String content) throws FileNotFoundException{
  		String fileName = noteName +".txt";
- 		String filePath = dirPath + fileName;
+ 		String filePath = dirPath +"/" + fileName;
  		editor.updateFile(filePath, content);
  		// add to files
  		files.put(fileName, content);
- 		// Resort
+ 		// Re-sort
  		sortNotes();
  	}
- 	// Method for adding a note
 
  	// Method for removing a note
- 	public void removeNote(String noteName){
+ 	public void removeNote(String noteName) throws IOException{
  		String fileName = noteName +".txt";
- 		String filePath = dirPath + fileName;
-		//editor.updateFile(filePath);
+ 		String filePath = dirPath + "/" +fileName;
+    // Remove from file System
+    editor.removeFile(filePath);
+    // Remove from files map
+    files.remove(fileName);
 
- 		// Remove from files
-
- 		// Resort
+		// Re-sort
  		sortNotes();
  	}
  }

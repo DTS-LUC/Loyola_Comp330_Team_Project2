@@ -17,10 +17,14 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.collections.FXCollections;
@@ -45,7 +49,7 @@ public class NoteAppGUIController {
     @FXML
 		private JFXButton folderBtn;
 		@FXML
-		private JFXButton updateBtn;
+		private JFXButton saveBtn;
 		@FXML
 		private JFXButton newBtn;
 		@FXML
@@ -57,43 +61,65 @@ public class NoteAppGUIController {
 
 // ActionEvent Methods
     @FXML
-    private void removeNote(ActionEvent e){
+    private void removeNote(ActionEvent e) throws IOException{
         System.out.println("Remove button");
-        // TODO create a function that deletes files
-        // Needs to get noteName from 'noteTitle'
-				// String noteName = title.value()
+				// TODO Confirmation box
+        // Get noteName from 'noteTitle'
+				String noteName = noteTitle.getText();
 				// Sends noteName to removeNote in Notes
-				// notes.removeNote(noteName)
-				// Removes note from list
+				notes.removeNote(noteName);
+				//Refresh noteListView
+				newNote();
+				updateNoteList();
     }
 
     @FXML
-    private void newNote(ActionEvent e){
-        System.out.println("New button");
-				// TODO create a function that creates new files
-        // Asks user to confirm save
-        // Brings up a blank note
-        // Needs to take value from 'notePad' textArea
-        // Also saves the filename from 'noteTitle'
+    private void newNote(){
+        System.out.println("New note");
+	noteTitle.setText("Note Title");
+	notePad.setText(null);
     }
 
     @FXML
-    private void updateNote(ActionEvent e){
-        //Once button is clicked method begins
-        System.out.println("Update button");
-        // To get text values call the name of the component
-        //  with '.getValue()'
-        System.out.println(notePad.getText());
-        // Program will then need to invoke the model class to update the values
+    private void saveNote() throws FileNotFoundException{
+        System.out.println("Update note");
+				// Get noteName from 'noteTitle'
+				String noteName = noteTitle.getText();
+				// Get content from 'notePad'
+				String content = notePad.getText();
+				// Sends noteName to updateNote in Notes
+				notes.updateNote(noteName, content);
+				// Update list
+				updateNoteList();
     }
 
     @FXML
-    private void toggleFav(ActionEvent e){
+    private void toggleFav(){
 
-        System.out.println("HI");
+        System.out.println("FAV");
 				// TODO toggles favorite value on note data.
-        // Need to svae this somewhere in the file
+        // Need to save this somewhere in the file
     }
+
+		public void displayNote(String noteName){
+					noteTitle.setText(noteName);
+					notePad.setText(notes.getNote(noteName));
+		}
+
+		public void updateNoteList(){
+			// Get list of note names from "Notes"
+			noteList = FXCollections.observableArrayList(notes.allNames());
+			noteListView.getItems().clear();
+			// Add Items noteListView
+			noteListView.getItems().addAll(noteList);
+			// Add event listeners to list
+			noteListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+	      @Override
+	      public void changed(ObservableValue<? extends String> ov, String old_val, String selected) {
+	          displayNote(selected);
+			  }
+		  });
+		}
 
     public void initialize() {
         // Open directory chooser
@@ -108,8 +134,8 @@ public class NoteAppGUIController {
         // Create notes - send directory path
         this.notes = new Notes(selectedDirectory.getAbsolutePath());
         // Set List View Items
-				noteList = FXCollections.observableArrayList(notes.allNames());
-				noteListView.getItems().addAll(noteList);
+				updateNoteList();
+
 				// Set values for sortBox
 				sorts	= FXCollections.observableArrayList("","@", "#", "^");
         sortBox.getItems().addAll(sorts);

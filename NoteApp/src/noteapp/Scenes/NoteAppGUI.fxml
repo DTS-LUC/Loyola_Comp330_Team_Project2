@@ -38,7 +38,7 @@
                      </font>
                   </JFXButton>
                   <JFXToggleButton fx:id="favToggle" contentDisplay="RIGHT" ellipsisString="" graphicTextGap="0.0" layoutX="191.0" layoutY="-3.0" prefHeight="28.0" prefWidth="50.0" text="Fav" textAlignment="JUSTIFY" textOverrun="CLIP" toggleColor="#f3ff47" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="233.0" AnchorPane.rightAnchor="212.0" AnchorPane.topAnchor="10.0" />
-                  <JFXButton fx:id="updateBtn" alignment="CENTER" layoutX="260.0" layoutY="20.0" onAction="#updateNote" style="-fx-background-color: #609dff;" text="Update" AnchorPane.rightAnchor="142.0" AnchorPane.topAnchor="10.0">
+                  <JFXButton fx:id="saveBtn" alignment="CENTER" layoutX="260.0" layoutY="20.0" onAction="#saveNote" style="-fx-background-color: #609dff;" text="Save" AnchorPane.rightAnchor="142.0" AnchorPane.topAnchor="10.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

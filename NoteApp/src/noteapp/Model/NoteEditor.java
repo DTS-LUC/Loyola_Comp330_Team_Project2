@@ -5,34 +5,36 @@ package noteapp.Model;
 import java.io.*;
 import java.util.*;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class NoteEditor{
 
-	public void updateFile(String filePath, String content)
+	public void updateFile(String filePath, String content) throws FileNotFoundException
 	{
 		PrintWriter out = new PrintWriter(filePath);
 		out.println(content);
-		printWriter.close ();
+		out.close ();
+                System.out.println("Updated File: " + content);
 	}
 
+		//Same as updateFile
+	// public void createFile(String filePath, String content)
+	// {
+	// 	PrintWriter out = new PrintWriter(filePath);
+	// 	out.println(content);
+	// 	out.close ();
+	// }
 
-
-	public void createFile(String filePath, String content)
+	public void removeFile(String filePath) throws IOException
 	{
-		PrintWriter out = new PrintWriter(filePath);
-		out.println(content);
-		printWriter.close ();
-	}
-
-
-	public void removeFile(String filePath)
-	{
+		Path path = Paths.get(filePath);
 		try {
-	    		Files.delete(path);
-			}catch (NoSuchFileException x)
-			{
-	    		System.err.format("No Such File", path);
-			}
+			Files.delete(path);
+			System.out.println(filePath);
+		}catch (NoSuchFileException x){
+			System.err.format("No Such File", path);
+		}
 	}
 }

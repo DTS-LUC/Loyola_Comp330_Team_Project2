@@ -33,7 +33,7 @@ public class NoteRetriever{
 	}
 
 	public TreeMap<String, String> getFiles(String dirPath){
-		TreeMap<String, String> files = new TreeMap<String, String>();
+		TreeMap<String, String> files = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
 		File folder = new File(dirPath);
 		String[] fileNames = listFiles(folder);
 
