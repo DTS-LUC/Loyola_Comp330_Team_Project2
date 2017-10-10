@@ -1,9 +1,11 @@
+package noteapp.Model;
+
 import java.util.regex.*;
 import java.util.*;
 
 public class NoteSorter{
 
-	public TreeMap<String,ArrayList<String>> sort(HashMap<String,String> files, String regPattern){
+	public TreeMap<String,ArrayList<String>> sort(TreeMap<String,String> files, String regPattern){
 	  // TreeMap store list of all identifiers
 	  // Key: identifier 	Value: fileName(s);
 	  // Key: String			Value: Arraylist to dynamically add Strings
