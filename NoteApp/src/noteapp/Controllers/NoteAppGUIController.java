@@ -59,7 +59,7 @@ public class NoteAppGUIController {
 		@FXML
 		private JFXTextArea notePad;
 
-		// ActionEvent Methods
+// ActionEvent Methods
     @FXML
     private void removeNote(ActionEvent e) throws IOException{
 				// TODO Confirmation box
@@ -117,7 +117,9 @@ public class NoteAppGUIController {
 			  }
 		  });
 		}
-
+		public void displayKeyword(){
+			
+		}
 		public void setKeywordList(char cmd, ArrayList<String> identifiers){
 			if (identifiers == null) {
 				// Get all

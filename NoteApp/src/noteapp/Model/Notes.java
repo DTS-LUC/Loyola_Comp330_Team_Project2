@@ -117,7 +117,6 @@ import java.io.IOException;
     editor.removeFile(filePath);
     // Remove from files map
     files.remove(fileName);
-
 		// Re-sort
  		sortNotes();
  	}
