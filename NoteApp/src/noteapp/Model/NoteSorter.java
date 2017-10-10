@@ -44,6 +44,8 @@ public class NoteSorter{
 	  return tm;
 	}
 
+	
+
 	public static HashSet<String> regexChecker(String theRegex, String str2Check){
 	  // Using HashSet to ensure unique values
 	  HashSet<String> matches = new HashSet<String>();

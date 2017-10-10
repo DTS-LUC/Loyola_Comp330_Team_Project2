@@ -43,7 +43,7 @@ import java.io.IOException;
     // String name : names
 		for (int i = 0; i < names.size(); i++) {
 			String name = names.get(i);
-                        name = name.substring(0, name.lastIndexOf("."));
+      name = name.substring(0, name.lastIndexOf("."));
 			names.set(i, name);
 		}
 	  return names;

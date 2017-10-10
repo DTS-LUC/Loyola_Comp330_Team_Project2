@@ -59,10 +59,9 @@ public class NoteAppGUIController {
 		@FXML
 		private JFXTextArea notePad;
 
-// ActionEvent Methods
+		// ActionEvent Methods
     @FXML
     private void removeNote(ActionEvent e) throws IOException{
-        System.out.println("Remove button");
 				// TODO Confirmation box
         // Get noteName from 'noteTitle'
 				String noteName = noteTitle.getText();
@@ -75,14 +74,13 @@ public class NoteAppGUIController {
 
     @FXML
     private void newNote(){
-        System.out.println("New note");
-	noteTitle.setText("Note Title");
-	notePad.setText(null);
+      System.out.println("New note");
+			noteTitle.setText("Note Title");
+			notePad.setText(null);
     }
 
     @FXML
     private void saveNote() throws FileNotFoundException{
-        System.out.println("Update note");
 				// Get noteName from 'noteTitle'
 				String noteName = noteTitle.getText();
 				// Get content from 'notePad'
@@ -95,8 +93,7 @@ public class NoteAppGUIController {
 
     @FXML
     private void toggleFav(){
-
-        System.out.println("FAV");
+        System.out.println("FAV toggle");
 				// TODO toggles favorite value on note data.
         // Need to save this somewhere in the file
     }
@@ -119,6 +116,28 @@ public class NoteAppGUIController {
 	          displayNote(selected);
 			  }
 		  });
+		}
+
+		public void setKeywordList(char cmd, ArrayList<String> identifiers){
+			if (identifiers == null) {
+				// Get all
+				switch (cmd){
+					case "@" :
+						notes.getAllMentions();
+						break;
+					case "#" :
+						notes.getAllTopics();
+						break;
+					case "!" :
+						notes.getAllIDs();
+						break;
+					default:
+						updateNoteList();
+				}
+			else{
+
+			}
+			}
 		}
 
     public void initialize() {
