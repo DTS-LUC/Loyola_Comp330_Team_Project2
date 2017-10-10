@@ -7,12 +7,30 @@ import java.nio.file.Paths;
 
 public class NoteEditor{
 
-	public void updateFile(String fileName, String content){
-
+	public void updateFile(String filePath, String content)
+	{
+		PrintWriter out = new PrintWriter(filePath);
+		out.println(content);
+		printWriter.close ();
 	}
 
-  public void removeFile(String fileName){
 
-  }
 
+	public void createFile(String filePath, String content)
+	{
+		PrintWriter out = new PrintWriter(filePath);
+		out.println(content);
+		printWriter.close ();
+	}
+
+
+	public void removeFile(String filePath)
+	{
+		try {
+	    		Files.delete(path);
+			}catch (NoSuchFileException x)
+			{
+	    		System.err.format("No Such File", path);
+			}
+	}
 }
