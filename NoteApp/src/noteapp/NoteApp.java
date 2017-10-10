@@ -19,12 +19,14 @@ public class NoteApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Scenes/NoteAppGUI.fxml"));
-
-        Scene scene = new Scene(root);
+        
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("Scenes/NoteAppGUI.fxml"));
+        
+        Scene scene = new Scene(fxmlLoader.load());
 
         stage.setScene(scene);
-				stage.setResizable(false);
+        stage.setResizable(false);
         stage.show();
     }
 
