@@ -122,23 +122,36 @@ public class NoteAppGUIController {
 			if (identifiers == null) {
 				// Get all
 				switch (cmd){
-					case "@" :
-						notes.getAllMentions();
+					case '@' :
+						notes.allMentions();
 						break;
-					case "#" :
-						notes.getAllTopics();
+					case '#' :
+						notes.allTopics();
 						break;
-					case "!" :
-						notes.getAllIDs();
+					case '!' :
+						notes.allIDs();
 						break;
 					default:
 						updateNoteList();
 				}
+			}
 			else{
-
+				// Get selectively
+				switch (cmd){
+					case '@' :
+						notes.findMentions();
+						break;
+					case '#' :
+						notes.findTopics();
+						break;
+					case '!' :
+						notes.findIDs();
+						break;
+					default:
+						updateNoteList();
+					}
+				}
 			}
-			}
-		}
 
     public void initialize() {
         // Open directory chooser
@@ -156,7 +169,7 @@ public class NoteAppGUIController {
 				updateNoteList();
 
 				// Set values for sortBox
-				sorts	= FXCollections.observableArrayList("","@", "#", "^");
+				sorts	= FXCollections.observableArrayList("","@", "#", "!");
         sortBox.getItems().addAll(sorts);
 
     }

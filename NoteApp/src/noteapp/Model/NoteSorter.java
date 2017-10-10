@@ -37,14 +37,37 @@ public class NoteSorter{
 	        tempList.add(fileName);
 	        tm.put(m, tempList);
 	        // System.out.println(tm);
-	      }
-	    }
-	  }
+		      }
+			   }
+			  }
 
 	  return tm;
 	}
 
-	
+	public TreeMap<String,String> sortIDs(TreeMap<String,String> files){
+		TreeMap<String,String> tm = new TreeMap<String,String>(String.CASE_INSENSITIVE_ORDER);
+
+	  HashSet<String> tmKeys = new HashSet<String>();
+
+	  ArrayList<String> tempList;
+	  String fileName;
+	  // Loop through files
+	  for(Map.Entry<String,String> file : files.entrySet()) {
+	    fileName = file.getKey();
+	    //Get all identifiers from the file text with regexChecker
+	    tmKeys = regexChecker("![a-zA-Z_][0-9a-zA-Z_]*", file.getValue());
+	    // Add mention keys to tm TreeMap
+	    for(String m:tmKeys) {
+	      // check if value exists
+	      if (tm.containsKey(m) != true){
+		// False: Add key - value
+	        tm.put(m, fileName);
+	      }
+			 }
+			}
+
+	  return tm;
+	}
 
 	public static HashSet<String> regexChecker(String theRegex, String str2Check){
 	  // Using HashSet to ensure unique values

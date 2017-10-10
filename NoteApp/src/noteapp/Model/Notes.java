@@ -29,7 +29,7 @@ import java.io.IOException;
  	public void sortNotes(){
  		setMentions(sorter.sort(files, "@[a-zA-Z_][0-9a-zA-Z_]*"));
  		setTopics(sorter.sort(files, "#[a-zA-Z_][0-9a-zA-Z_]*"));
-		// 		setIDs(sorter.getIDs(files));
+		setIDs(sorter.sortIDs(files));
  	}
  	// Methods for setting values
  	public void setMentions(TreeMap<String,ArrayList<String>> mentions){this.mentions = mentions;}
@@ -92,11 +92,11 @@ import java.io.IOException;
  		return selection;
  	}
 
-        // Method for retrieving note contents
-        public String getNote(String noteName){
-            String content = files.get(noteName + ".txt");
-            return content;
-        }
+  // Method for retrieving note contents
+  public String getNote(String noteName){
+      String content = files.get(noteName + ".txt");
+      return content;
+  }
 
  	// Method for updating/adding a note
  	public void updateNote(String noteName, String content) throws FileNotFoundException{
