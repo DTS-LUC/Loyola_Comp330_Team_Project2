@@ -141,13 +141,13 @@ public class NoteAppGUIController {
 				// Get selectively
 				switch (cmd){
 					case '@' :
-						notes.findMentions();
+						//notes.findMentions();
 						break;
 					case '#' :
 						notes.findTopics();
-						break;
+						//break;
 					case '!' :
-						notes.findIDs();
+						//notes.findIDs();
 						break;
 					default:
 						updateNoteList();
