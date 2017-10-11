@@ -16,7 +16,6 @@ public class NoteEditor{
 		PrintWriter out = new PrintWriter(filePath);
 		out.println(content);
 		out.close ();
-                System.out.println("Updated File: " + content);
 	}
 
 		//Same as updateFile
@@ -32,7 +31,6 @@ public class NoteEditor{
 		Path path = Paths.get(filePath);
 		try {
 			Files.delete(path);
-			System.out.println(filePath);
 		}catch (NoSuchFileException x){
 			System.err.format("No Such File", path);
 		}

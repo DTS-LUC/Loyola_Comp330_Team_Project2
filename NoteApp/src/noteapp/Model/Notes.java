@@ -37,8 +37,8 @@ import java.io.IOException;
  	public void setIDs(TreeMap<String,String> ids){this.ids = ids;}
 
  	// Methods for retrieving all values in sorted order
-  public List<String> allNames(){
-	  List<String> names = new ArrayList<>();
+  public ArrayList<String> allNames(){
+	  ArrayList<String> names = new ArrayList<>();
           names.addAll(files.keySet());
     // String name : names
 		for (int i = 0; i < names.size(); i++) {
@@ -48,55 +48,99 @@ import java.io.IOException;
 		}
 	  return names;
 	}
- 	public TreeMap<String,ArrayList<String>> allMentions(){return mentions;}
- 	public TreeMap<String,ArrayList<String>> allTopics(){return topics;}
- 	public TreeMap<String,String> allIDs(){return ids;}
+ 	public ArrayList<String> allMentions(){
+		ArrayList<String> list = new ArrayList<>();
+    list.addAll(mentions.keySet());
+		for (int i = 0; i < list.size(); i++) {
+			String name = list.get(i);
+			name = name.substring(0, name.lastIndexOf("."));
+			list.set(i, name);
+		}
+		return list;
+	}
+ 	public ArrayList<String> allTopics(){
+		ArrayList<String> list = new ArrayList<>();
+		list.addAll(topics.keySet());
+		for (int i = 0; i < list.size(); i++) {
+			String name = list.get(i);
+			name = name.substring(0, name.lastIndexOf("."));
+			list.set(i, name);
+		}
+		return list;
+}
+ 	public ArrayList<String> allIDs(){
+		ArrayList<String> list = new ArrayList<>();
+		list.addAll(ids.keySet());
+		return list;
+        }
 
- 	// Method for retrieving select Mention value(s)
- 	public TreeMap<String,ArrayList<String>> findMentions(ArrayList<String> search){
- 		search.remove(0);
- 		TreeMap<String,ArrayList<String>> selection = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
- 		ArrayList<String> selected;
+ 	// Method for retrieving file names that match select Mention value(s)
+ 	public ArrayList<String> matchMentions(String search){
+ 		ArrayList<String> selected = new ArrayList<>(mentions.get("@" + search));
 
- 		for(String s:search) {
- 			selected = new ArrayList<>(mentions.get("@" +s));
- 			selection.put( "@" + s, selected);
+                        if(selected.isEmpty()){
+                            selected.add("No results");
+                        }
+												for (int i = 0; i < selected.size(); i++) {
+													String name = selected.get(i);
+										      name = name.substring(0, name.lastIndexOf("."));
+													selected.set(i, name);
+												}
+			return selected;
  		}
 
- 		return selection;
- 	}
- 	// Method for retrieving select Topic value(s)
- 	public TreeMap<String,ArrayList<String>> findTopics(ArrayList<String> search){
- 		search.remove(0);
- 		TreeMap<String,ArrayList<String>> selection = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
- 		ArrayList<String> selected;
+ 	// Method for retrieving file names that match select Topic value(s)
+	public ArrayList<String> matchTopics(String search){
+ 		ArrayList<String> selected = new ArrayList<>(topics.get("#" + search));;
 
- 		for(String s:search) {
- 			selected = mentions.get( "#" + s);
- 			selection.put( "#" + s, selected);
-	 		}
+                        if(selected.isEmpty()){
+                            selected.add("No results");
+                        }
+												for (int i = 0; i < selected.size(); i++) {
+													String name = selected.get(i);
+										      name = name.substring(0, name.lastIndexOf("."));
+													selected.set(i, name);
+												}
+			return selected;
+ 		}
 
-	 	return selection;
- 	}
- 	// Method for retrieving select ID value(s)
- 	public TreeMap<String,String> findIDs(ArrayList<String> search){
- 		search.remove(0);
- 		TreeMap<String,String> selection = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+ 	// Method for retrieving file names that match select ID value(s)
+	public String matchId(String search){
  		String selected;
 
- 		for(String s:search) {
- 			selected = ids.get( "!" + s);
- 			selection.put( "!" + s, selected);
+ 			selected = ids.get("!" + search);
+                        selected = selected.substring(0, selected.lastIndexOf("."));
+			return selected;
  		}
-
- 		return selection;
- 	}
 
   // Method for retrieving note contents
   public String getNote(String noteName){
       String content = files.get(noteName + ".txt");
+			if (content == null) {
+				return "No note found.";
+			}
       return content;
   }
+	// Method for retriving keyword matches
+	public String getKeywordInfo(String keyword){
+		List<String> matches = new ArrayList<>();
+		String keywordInfo;
+		char cmd = keyword.charAt(0);
+		switch (cmd){
+			case '@':
+							matches = mentions.get(keyword);
+							break;
+      case '#':
+              matches = topics.get(keyword);
+              break;
+      case '!':
+              String fileName= ids.get(keyword);
+              return keyword = files.get(fileName);
+
+		}
+		keywordInfo = String.join("/n", matches);
+		return keywordInfo;
+	}
 
  	// Method for updating/adding a note
  	public void updateNote(String noteName, String content) throws FileNotFoundException{
