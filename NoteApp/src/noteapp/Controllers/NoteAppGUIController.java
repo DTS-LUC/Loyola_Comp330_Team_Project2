@@ -173,11 +173,51 @@ public class NoteAppGUIController {
                         noteTitle.setText(noteName);
                         notePad.setText(content);
 		}
+<<<<<<< HEAD
 		public void displayKeyword(String noteName){
 			noteTitle.setText(noteName);
 			notePad.setText(notes.getKeywordInfo(noteName));
 		}
 
+=======
+		public void displayKeyword(){
+
+		}
+		public void setKeywordList(char cmd, ArrayList<String> identifiers){
+			if (identifiers == null) {
+				// Get all
+				switch (cmd){
+					case '@' :
+						notes.allMentions();
+						break;
+					case '#' :
+						notes.allTopics();
+						break;
+					case '!' :
+						notes.allIDs();
+						break;
+					default:
+						updateNoteList();
+				}
+			}
+			else{
+				// Get selectively
+				switch (cmd){
+					case '@' :
+						//notes.findMentions();
+						break;
+					case '#' :
+						//notes.findTopics();
+						break;
+					case '!' :
+						//notes.findIDs();
+						break;
+					default:
+						//updateNoteList();
+					}
+				}
+			}
+>>>>>>> c77465e480679503f8db3ff62c8ff23dde5ebfe5
 
     public void initialize() {
         // Open directory chooser
