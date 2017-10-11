@@ -58,7 +58,7 @@ public class NoteAppGUIController {
 
 // ActionEvent Methods
 		@FXML
-		public void search()throws IOException{
+		public void search()throws NullPointerException{
 			// Get sort command from ComboBox
 			String cmd = sortBox.getValue();
 			// Get search value
@@ -68,9 +68,9 @@ public class NoteAppGUIController {
 			}
 			//List for storing keywordss
 			ArrayList<String> keywords = new ArrayList<>();
-			System.out.println(cmd+" "+search);
 			//Get list of note keywords from "Notes"
 			if (!"".equals(search)) {
+				// Return all by sort if search bar is null
 				switch (cmd) {
 					case "@" :
 						keywords.addAll(notes.matchMentions(search));
@@ -108,7 +108,7 @@ public class NoteAppGUIController {
 			noteListView.getItems().addAll(keywordList);
 			// Add event listeners to list
 			noteListView.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends String> ov, String old_val, String selected) -> {
-                            displayNote(selected);
+														displayKeyword(selected);
                         });
 		}
     @FXML
@@ -170,12 +170,19 @@ public class NoteAppGUIController {
 	          displayNote(selected);
 			  }
 		  });
+                        // Reset notes value
                         noteTitle.setText(noteName);
                         notePad.setText(content);
 		}
-		public void displayKeyword(String noteName){
-			noteTitle.setText(noteName);
-			notePad.setText(notes.getKeywordInfo(noteName));
+		public void displayKeyword(String keyword) throws NullPointerException{
+			if (keyword.charAt(0) == '!') {
+				noteTitle.setText(notes.findByID(keyword));
+			}
+			else{
+				noteTitle.setText(keyword);
+			}
+			notePad.setText(notes.getKeywordInfo(keyword));
+			// TODO Set editable false
 		}
 
 

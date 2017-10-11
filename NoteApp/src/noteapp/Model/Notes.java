@@ -49,28 +49,15 @@ import java.io.IOException;
 	  return names;
 	}
  	public ArrayList<String> allMentions(){
-		ArrayList<String> list = new ArrayList<>();
-    list.addAll(mentions.keySet());
-		for (int i = 0; i < list.size(); i++) {
-			String name = list.get(i);
-			name = name.substring(0, name.lastIndexOf("."));
-			list.set(i, name);
-		}
+		ArrayList<String> list = new ArrayList<>(mentions.keySet());
 		return list;
 	}
  	public ArrayList<String> allTopics(){
-		ArrayList<String> list = new ArrayList<>();
-		list.addAll(topics.keySet());
-		for (int i = 0; i < list.size(); i++) {
-			String name = list.get(i);
-			name = name.substring(0, name.lastIndexOf("."));
-			list.set(i, name);
-		}
+		ArrayList<String> list = new ArrayList<>(topics.keySet());
 		return list;
 }
  	public ArrayList<String> allIDs(){
-		ArrayList<String> list = new ArrayList<>();
-		list.addAll(ids.keySet());
+		ArrayList<String> list = new ArrayList<>(ids.keySet());
 		return list;
         }
 
@@ -121,7 +108,11 @@ import java.io.IOException;
 			}
       return content;
   }
-	// Method for retriving keyword matches
+	// Method for retrieving keyword by ID
+	public String findByID(String keyword){
+		return ids.get(keyword);
+	}
+	// Method for retrieving keyword matches
 	public String getKeywordInfo(String keyword){
 		List<String> matches = new ArrayList<>();
 		String keywordInfo;
@@ -138,7 +129,7 @@ import java.io.IOException;
               return keyword = files.get(fileName);
 
 		}
-		keywordInfo = String.join("/n", matches);
+		keywordInfo = String.join("\n", matches);
 		return keywordInfo;
 	}
 
