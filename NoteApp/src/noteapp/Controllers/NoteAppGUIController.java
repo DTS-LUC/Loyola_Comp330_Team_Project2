@@ -144,8 +144,13 @@ public class NoteAppGUIController {
 						//notes.findMentions();
 						break;
 					case '#' :
+<<<<<<< HEAD
 						//notes.findTopics();
 						break;
+=======
+						notes.findTopics();
+						//break;
+>>>>>>> 857bd7b83280365d5276174a4a888f3f41e58dcd
 					case '!' :
 						//notes.findIDs();
 						break;
