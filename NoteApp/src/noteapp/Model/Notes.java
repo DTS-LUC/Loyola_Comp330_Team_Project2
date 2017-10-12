@@ -2,6 +2,9 @@ import java.util.*;
 
 public class Notes{
 	// Key: @identifier Value: fileNames
+	
+	TreeMap<String,Integer> Words = new TreeMap<String,Integer>();
+	
 	TreeMap<String,ArrayList<String>> mentions = new TreeMap<String,ArrayList<String>>();
 	// Key: #identifier Value: fileNames
 	TreeMap<String,ArrayList<String>> topics = new TreeMap<String,ArrayList<String>>();
@@ -13,11 +16,14 @@ public class Notes{
 	// TODO Create a constructor that recieves valid dirPath
 
 	// Methods for setting values
+	
+	public void setWords(TreeMap<String, Integer > Words ) {this.Words = Words;}
 	public void setMentions(TreeMap<String,ArrayList<String>> mentions){this.mentions = mentions;}
 	public void setTopics(TreeMap<String,ArrayList<String>> topics){this.topics = topics;}
 	public void setIDs(TreeMap<String,String> ids){this.ids = ids;}
 
 	// Methods for retrieving all values
+	public TreeMap<String,Integer> getAllWords(){return Words;}
 	public TreeMap<String,ArrayList<String>> getAllMentions(){return mentions;}
 	public TreeMap<String,ArrayList<String>> getAllTopics(){return topics;}
 	public TreeMap<String,String> getAllIDs(){return ids;}
