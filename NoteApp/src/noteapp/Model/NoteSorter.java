@@ -60,7 +60,8 @@ public class NoteSorter{
 	  public static int countMatches(String content)
 	  {
 	 	HashSet<String> words = new HashSet<String>();
-	 	words = regexChecker(whitespace pattern, content);
+	 	words = regexChecker("[\s][\D+\d]", content);
+		  
 	  	return (words.size()+1);
 	  }
 }
