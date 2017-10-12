@@ -57,10 +57,10 @@ public class NoteSorter{
 	  return matches;
 	}
 
-	// public static int countMatches(String content)
-	// {
-	//	HashSet<String> words = new HashSet<String>();
-	// 	words = regexChecker(whitespace pattern, content);
-	// 	return words.size();
-	// }
+	  public static int countMatches(String content)
+	  {
+	 	HashSet<String> words = new HashSet<String>();
+	 	words = regexChecker(whitespace pattern, content);
+	  	return (words.size()+1);
+	  }
 }
