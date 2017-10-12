@@ -45,6 +45,8 @@ public class NoteAppGUIController {
 		private JFXTextField noteTitle;
 		@FXML
 		private JFXToggleButton favToggle;
+                @FXML
+		private JFXButton findBtn;
 		@FXML
 		private JFXButton saveBtn;
 		@FXML
@@ -106,10 +108,6 @@ public class NoteAppGUIController {
 			noteListView.getItems().clear();
 			// Add Items noteListView
 			noteListView.getItems().addAll(keywordList);
-			// Add event listeners to list
-			noteListView.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends String> ov, String old_val, String selected) -> {
-														displayKeyword(selected);
-                        });
 		}
     @FXML
     private void removeNote(ActionEvent e) throws IOException{
@@ -147,10 +145,38 @@ public class NoteAppGUIController {
 				// TODO toggles favorite value on note data.
         // Need to save this somewhere in the file
     }
-
+                // Link to keyword. Re-Write previous if statement
+    // If charAt(0) > 64 ; All the alphabetical characters in the ascii index are greater
 		public void displayNote(String noteName){
+			char cmd = noteName.charAt(0);
+
+			if (!Character.isLetter(cmd)) {
+                                System.out.println(cmd);
+				// Hide buttons
+				saveBtn.setVisible(false);
+                                newBtn.setVisible(false);
+                                removeBtn.setVisible(false);
+				if (cmd == '!') {
+					noteTitle.setText(notes.findByID(noteName));
+
+				}
+				else{
+					noteTitle.setText(noteName);
+				}
+				notePad.setText(notes.getKeywordInfo(noteName));
+				// User cannont edit
+				noteTitle.setEditable(false);
+				notePad.setEditable(false);
+				return;
+			}
+			// MAke sure buttons are visible and user can edit
+			saveBtn.setVisible(true);
+															newBtn.setVisible(true);
+															removeBtn.setVisible(true);
 					noteTitle.setText(noteName);
 					notePad.setText(notes.getNote(noteName));
+					noteTitle.setEditable(true);
+					notePad.setEditable(true);
 		}
 
 		public void updateNoteList(){
@@ -173,16 +199,6 @@ public class NoteAppGUIController {
                         // Reset notes value
                         noteTitle.setText(noteName);
                         notePad.setText(content);
-		}
-		public void displayKeyword(String keyword) throws NullPointerException{
-			if (keyword.charAt(0) == '!') {
-				noteTitle.setText(notes.findByID(keyword));
-			}
-			else{
-				noteTitle.setText(keyword);
-			}
-			notePad.setText(notes.getKeywordInfo(keyword));
-			// TODO Set editable false
 		}
 
 
