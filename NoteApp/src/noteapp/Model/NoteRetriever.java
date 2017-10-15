@@ -3,7 +3,9 @@ package noteapp.Model;
 import java.io.*;
 import java.util.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 public class NoteRetriever{
 
@@ -31,11 +33,23 @@ public class NoteRetriever{
 
 		return content;
 	}
-	public ArrayList<String> getFavorites(){
+	public ArrayList<String> getFavorites(String dirPath) throws IOException{
+		ArrayList<String> favorites = new ArrayList<>();
 		// Check for favorites file
+		String favPath = dirPath + "/*favs*.txt";
+		File favsFile = new File(favPath);
+		// Checks if file exists and
 		// Create one if it doesn't exists
+		favsFile.createNewFile();
 		// Read favorites file
-		//  Return list of favorite
+		String content = readFile("*favs*.txt", dirPath);
+		try (Stream<String> lines = Files.lines(Paths.get(favPath))) {
+            lines.forEach(s -> favorites.add(s));
+    } catch (IOException ex) {
+
+    }
+		// Return list of favorite
+    return favorites;
 	}
 
 	public TreeMap<String, String> getFiles(String dirPath){
@@ -46,9 +60,11 @@ public class NoteRetriever{
 		for (String file: fileNames) {
 			files.put(file, readFile(file, dirPath));
 		}
-		// TODO
-		// Check for favorites file - *fav*.txt
-		// Remove if present
+		// Check for favorites file - *favs*.txt
+		if (files.containsKey("*favs*.txt")) {
+			// Remove if present
+			files.remove("*favs*.txt");
+		}
 		return files;
 	}
 }

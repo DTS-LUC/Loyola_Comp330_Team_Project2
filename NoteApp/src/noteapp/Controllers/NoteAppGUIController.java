@@ -60,6 +60,8 @@ public class NoteAppGUIController {
 		private JFXTextArea notePad;
 
 // ActionEvent Methods
+// TODO Favorite Toggle functionality
+
 		@FXML
 		public void search()throws NullPointerException{
 			// Get sort command from ComboBox
@@ -85,7 +87,7 @@ public class NoteAppGUIController {
 						keywords.add(notes.matchId(search));
 						break;
 					case "*" :
-						keywords.add(notes.allFavs());
+						keywords.addAll(notes.allFavs());
 						break;
 					default :
 						displayNote(search);
@@ -103,7 +105,7 @@ public class NoteAppGUIController {
 						keywords.addAll(notes.allIDs());
 						break;
 					case "*" :
-						keywords.add(notes.allFavs());
+						keywords.addAll(notes.allFavs());
 						break;
 					default :
 						updateNoteList();
@@ -156,11 +158,14 @@ public class NoteAppGUIController {
     }
 
 		public void displayNote(String noteName){
-			char cmd = noteName.charAt(0);
+			// TODO check to see if favorite
+			// notes.checkFav(noteName)
 			// Check to see if searching for keyword or note
+			char cmd = noteName.charAt(0);
 			// If displaying keyword info
 			if (!Character.isLetter(cmd) && cmd != '*') {
 					// Hide buttons
+					favToggle.setVisible(false);
 					saveBtn.setVisible(false);
 	        newBtn.setVisible(false);
 	        removeBtn.setVisible(false);
@@ -181,6 +186,7 @@ public class NoteAppGUIController {
 				}
 			// If displaying note
 			// Make sure buttons are visible
+			favToggle.setVisible(true);
 			saveBtn.setVisible(true);
 			newBtn.setVisible(true);
 			removeBtn.setVisible(true);
@@ -209,7 +215,7 @@ public class NoteAppGUIController {
 		}
 
 
-    public void initialize() {
+    public void initialize() throws IOException {
         // Open directory chooser
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Select a folder");

@@ -14,6 +14,7 @@ import java.io.IOException;
  	// Key: #identifier Value: fileNames
  	TreeMap<String,ArrayList<String>> topics 		= new TreeMap<>();
 	// List of Favorited note names
+	//*favs*.txt
 	ArrayList<String> favs = new ArrayList<>();
 
  	NoteRetriever retriever = new NoteRetriever();
@@ -22,12 +23,12 @@ import java.io.IOException;
 
  	private final String dirPath;
 
- 	public Notes(String dirPath){
+ 	public Notes(String dirPath) throws IOException{
  		this.dirPath = dirPath;
  		this.files = retriever.getFiles(dirPath);
 		// Get favorites
-		this.favs = retriever.getFvorites();
-
+		this.favs = retriever.getFavorites(dirPath);
+		if (favs.isEmpty()) {favs.add("No Favorites Added");}
 		sortNotes();
  	}
 
@@ -69,35 +70,34 @@ import java.io.IOException;
         }
 	public ArrayList<String> allFavs(){return this.favs;}
 
-public boolean checkFav(String noteName){/* Use list contains method*/}
  	// Method for retrieving file names that match select Mention value(s)
  	public ArrayList<String> matchMentions(String search){
  		ArrayList<String> selected = new ArrayList<>(mentions.get("@" + search));
 
-                        if(selected.isEmpty()){
-                            selected.add("No results");
-                        }
-												for (int i = 0; i < selected.size(); i++) {
-													String name = selected.get(i);
-										      name = name.substring(0, name.lastIndexOf("."));
-													selected.set(i, name);
-												}
-			return selected;
- 		}
+    if(selected.isEmpty()){
+        selected.add("No results");
+    }
+		for (int i = 0; i < selected.size(); i++) {
+			String name = selected.get(i);
+      name = name.substring(0, name.lastIndexOf("."));
+			selected.set(i, name);
+		}
+		return selected;
+		}
 
  	// Method for retrieving file names that match select Topic value(s)
 	public ArrayList<String> matchTopics(String search){
  		ArrayList<String> selected = new ArrayList<>(topics.get("#" + search));;
 
-                        if(selected.isEmpty()){
-                            selected.add("No results");
-                        }
-												for (int i = 0; i < selected.size(); i++) {
-													String name = selected.get(i);
-										      name = name.substring(0, name.lastIndexOf("."));
-													selected.set(i, name);
+	  if(selected.isEmpty()){
+	      selected.add("No results");
+	  }
+		for (int i = 0; i < selected.size(); i++) {
+			String name = selected.get(i);
+	    name = name.substring(0, name.lastIndexOf("."));
+			selected.set(i, name);
 												}
-			return selected;
+		return selected;
  		}
 
  	// Method for retrieving file names that match select ID value(s)
@@ -152,12 +152,20 @@ public boolean checkFav(String noteName){/* Use list contains method*/}
  		// Re-sort
  		sortNotes();
  	}
+
+	// Method for checking if a note is favorited
+	public boolean checkFav(String noteName){return favs.contains(noteName);}
+
 	public void addFavorite(){
 		//TODO
+		// Add to ArrayList
+		// Convert list into single String
 		// Use editor.updateFile
 	}
 	public void removeFavorite(){
 		//TODO
+		// Remove from ArrayList
+		// Convert list into single String
 		// Use editor.updateFile
 	}
 
