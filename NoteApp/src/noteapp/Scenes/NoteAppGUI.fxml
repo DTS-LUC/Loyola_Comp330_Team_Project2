@@ -9,19 +9,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="noteapp.Controllers.NoteAppGUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="778.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="noteapp.Controllers.NoteAppGUIController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #118866;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="503.0" prefWidth="253.0" style="-fx-background-color: #118866;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="525.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXListView fx:id="noteListView" prefHeight="408.0" prefWidth="199.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="50.0" />
-            <JFXTextField fx:id="searchField" focusColor="WHITE" layoutX="64.0" layoutY="10.0" prefHeight="25.0" prefWidth="125.0" promptText="Search..." unFocusColor="#999999" AnchorPane.bottomAnchor="465.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="10.0" />
-            <JFXComboBox fx:id="sortBox" focusColor="WHITE" layoutX="14.0" layoutY="10.0" prefHeight="25.0" prefWidth="73.0" promptText="Sort" unFocusColor="#999999" AnchorPane.bottomAnchor="465.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="10.0" />
-            <JFXButton fx:id="findBtn" layoutX="165.0" layoutY="11.0" onAction="#search" opacity="0.81" style="-fx-background-color: #ffffff;" text="Find" AnchorPane.bottomAnchor="466.0" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="11.0" />
+            <JFXListView fx:id="noteListView" layoutY="58.0" prefHeight="472.0" prefWidth="241.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="58.0" />
+            <JFXTextField fx:id="searchField" focusColor="WHITE" layoutX="86.0" layoutY="10.0" prefHeight="28.0" prefWidth="114.0" promptText="Search..." unFocusColor="#999999" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="10.0" />
+            <JFXComboBox fx:id="sortBox" focusColor="WHITE" layoutX="14.0" layoutY="10.0" prefHeight="28.0" prefWidth="74.0" promptText="Sort" unFocusColor="#999999" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="158.0" AnchorPane.topAnchor="10.0" />
+            <JFXButton fx:id="findBtn" layoutX="205.0" layoutY="11.0" onAction="#search" opacity="0.81" prefHeight="26.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" text="Find" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="11.0" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f8ecc2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="253.0" prefHeight="503.0" prefWidth="525.0" style="-fx-background-color: #f8ecc2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="51.0" prefWidth="500.0" style="-fx-background-color: #A0A0A0;" AnchorPane.bottomAnchor="452.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane prefHeight="57.0" prefWidth="525.0" style="-fx-background-color: #A0A0A0;" AnchorPane.bottomAnchor="483.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXTextField fx:id="noteTitle" focusColor="#4d4d4d" layoutX="14.0" layoutY="14.0" prefHeight="33.0" prefWidth="186.0" text="Note Title" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="10.0">
                      <font>
@@ -38,7 +38,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXToggleButton fx:id="favToggle" contentDisplay="RIGHT" ellipsisString="" graphicTextGap="0.0" layoutX="191.0" layoutY="-3.0" onAction="#toggleFav" prefHeight="28.0" prefWidth="50.0" text="Fav" textAlignment="JUSTIFY" textOverrun="CLIP" toggleColor="#f3ff47" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="233.0" AnchorPane.rightAnchor="212.0" AnchorPane.topAnchor="10.0" />
+                  <JFXToggleButton fx:id="favToggle" contentDisplay="RIGHT" ellipsisString="" graphicTextGap="0.0" layoutX="252.0" layoutY="-6.0" onAction="#toggleFav" prefHeight="45.0" prefWidth="53.0" text="Fav" textAlignment="JUSTIFY" textOverrun="CLIP" toggleColor="#f3ff47" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="-6.0" />
                   <JFXButton fx:id="saveBtn" alignment="CENTER" layoutX="260.0" layoutY="20.0" onAction="#saveNote" style="-fx-background-color: #609dff;" text="Save" AnchorPane.rightAnchor="142.0" AnchorPane.topAnchor="10.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
