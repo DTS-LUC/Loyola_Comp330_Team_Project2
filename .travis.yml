@@ -1,5 +1,2 @@
 language: java
-
-# install: ant deps
-
 script: ant -f NoteApp jfx-rebuild

@@ -60,7 +60,17 @@ public class NoteAppGUIController {
 		private JFXTextArea notePad;
 
 // ActionEvent Methods
-// TODO Favorite Toggle functionality
+
+		@FXML
+		public void toggleFav(){
+			// Get noteName
+			String noteName = noteTitle.getText();
+			if (favToggle.isSelected()) {
+				notes.addFavorite(noteName);
+			}else{
+				notes.removeFavorite(noteName);
+			}
+		}
 
 		@FXML
 		public void search()throws NullPointerException{
@@ -150,16 +160,10 @@ public class NoteAppGUIController {
       updateNoteList();
     }
 
-    @FXML
-    private void toggleFav(){
-      System.out.println("FAV toggle");
-			// TODO toggles favorite value on note data.
-      // Need to save this somewhere in the file
-    }
 
 		public void displayNote(String noteName){
 			// TODO check to see if favorite
-			// notes.checkFav(noteName)
+			favToggle.setSelected(notes.checkFav(noteName));
 			// Check to see if searching for keyword or note
 			char cmd = noteName.charAt(0);
 			// If displaying keyword info

@@ -3,6 +3,8 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
  import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
  public class Notes{
  	// Key: fileName 	Value: content
@@ -28,7 +30,6 @@ import java.io.IOException;
  		this.files = retriever.getFiles(dirPath);
 		// Get favorites
 		this.favs = retriever.getFavorites(dirPath);
-		if (favs.isEmpty()) {favs.add("No Favorites Added");}
 		sortNotes();
  	}
 
@@ -68,7 +69,14 @@ import java.io.IOException;
 		ArrayList<String> list = new ArrayList<>(ids.keySet());
 		return list;
         }
-	public ArrayList<String> allFavs(){return this.favs;}
+	public ArrayList<String> allFavs(){
+    if (favs.isEmpty()) {
+      ArrayList<String> noFavs = new ArrayList<>();
+      noFavs.add("No Favorites Added");
+      return noFavs;
+    }
+    return this.favs;
+    }
 
  	// Method for retrieving file names that match select Mention value(s)
  	public ArrayList<String> matchMentions(String search){
@@ -156,17 +164,33 @@ import java.io.IOException;
 	// Method for checking if a note is favorited
 	public boolean checkFav(String noteName){return favs.contains(noteName);}
 
-	public void addFavorite(){
-		//TODO
+	public void addFavorite(String noteName){
 		// Add to ArrayList
+    favs.add(noteName);
+    Collections.sort(favs);
 		// Convert list into single String
-		// Use editor.updateFile
+    String favorites = String.join("\n", favs);
+		// Update *favs* file
+    String filePath = dirPath + "/*favs*.txt";
+             try {
+                 editor.updateFile(filePath, favorites);
+             } catch (FileNotFoundException ex) {
+                 Logger.getLogger(Notes.class.getName()).log(Level.SEVERE, null, ex);
+             }
 	}
-	public void removeFavorite(){
-		//TODO
+
+	public void removeFavorite(String noteName){
 		// Remove from ArrayList
+    favs.remove(noteName);
 		// Convert list into single String
-		// Use editor.updateFile
+    String favorites = String.join("\n", favs);
+		// Update *favs* file
+    String filePath = dirPath + "/*favs*.txt";
+             try {
+                 editor.updateFile(filePath, favorites);
+             } catch (FileNotFoundException ex) {
+                 Logger.getLogger(Notes.class.getName()).log(Level.SEVERE, null, ex);
+             }
 	}
 
  	// Method for removing a note
