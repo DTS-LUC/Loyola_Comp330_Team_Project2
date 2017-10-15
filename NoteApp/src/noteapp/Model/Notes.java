@@ -13,6 +13,8 @@ import java.io.IOException;
  	TreeMap<String,ArrayList<String>> mentions 	= new TreeMap<>();
  	// Key: #identifier Value: fileNames
  	TreeMap<String,ArrayList<String>> topics 		= new TreeMap<>();
+	// List of Favorited note names
+	ArrayList<String> favs = new ArrayList<>();
 
  	NoteRetriever retriever = new NoteRetriever();
  	NoteSorter		sorter		= new NoteSorter();
@@ -23,7 +25,10 @@ import java.io.IOException;
  	public Notes(String dirPath){
  		this.dirPath = dirPath;
  		this.files = retriever.getFiles(dirPath);
- 		sortNotes();
+		// Get favorites
+		this.favs = retriever.getFvorites();
+
+		sortNotes();
  	}
 
  	public void sortNotes(){
@@ -31,10 +36,12 @@ import java.io.IOException;
  		setTopics(sorter.sort(files, "#[a-zA-Z_][0-9a-zA-Z_]*"));
 		setIDs(sorter.sortIDs(files));
  	}
+
  	// Methods for setting values
  	public void setMentions(TreeMap<String,ArrayList<String>> mentions){this.mentions = mentions;}
  	public void setTopics(TreeMap<String,ArrayList<String>> topics){this.topics = topics;}
  	public void setIDs(TreeMap<String,String> ids){this.ids = ids;}
+	public void setFavs(ArrayList<String> favs){this.favs = favs;}
 
  	// Methods for retrieving all values in sorted order
   public ArrayList<String> allNames(){
@@ -55,12 +62,14 @@ import java.io.IOException;
  	public ArrayList<String> allTopics(){
 		ArrayList<String> list = new ArrayList<>(topics.keySet());
 		return list;
-}
+			}
  	public ArrayList<String> allIDs(){
 		ArrayList<String> list = new ArrayList<>(ids.keySet());
 		return list;
         }
+	public ArrayList<String> allFavs(){return this.favs;}
 
+public boolean checkFav(String noteName){/* Use list contains method*/}
  	// Method for retrieving file names that match select Mention value(s)
  	public ArrayList<String> matchMentions(String search){
  		ArrayList<String> selected = new ArrayList<>(mentions.get("@" + search));
@@ -143,6 +152,14 @@ import java.io.IOException;
  		// Re-sort
  		sortNotes();
  	}
+	public void addFavorite(){
+		//TODO
+		// Use editor.updateFile
+	}
+	public void removeFavorite(){
+		//TODO
+		// Use editor.updateFile
+	}
 
  	// Method for removing a note
  	public void removeNote(String noteName) throws IOException{

@@ -31,9 +31,10 @@ import javafx.stage.DirectoryChooser;
 import noteapp.Model.Notes;
 
 public class NoteAppGUIController {
+// Notes
 		private Notes notes;
-// Lists;
-		private ObservableList<String> sorts = FXCollections.observableArrayList("Name","@", "#", "!");
+// Lists
+		private ObservableList<String> sorts = FXCollections.observableArrayList("Name","@", "#", "!", "*");
 		private List<String> noteList = new ArrayList<>();
 		private List<String> keywordList = new ArrayList<>();
 // JFX Objects
@@ -83,6 +84,9 @@ public class NoteAppGUIController {
 					case "!" :
 						keywords.add(notes.matchId(search));
 						break;
+					case "*" :
+						keywords.add(notes.allFavs());
+						break;
 					default :
 						displayNote(search);
 						return;
@@ -98,6 +102,9 @@ public class NoteAppGUIController {
 					case "!" :
 						keywords.addAll(notes.allIDs());
 						break;
+					case "*" :
+						keywords.add(notes.allFavs());
+						break;
 					default :
 						updateNoteList();
 						return;
@@ -111,94 +118,94 @@ public class NoteAppGUIController {
 		}
     @FXML
     private void removeNote(ActionEvent e) throws IOException{
-				// TODO Confirmation box
-        // Get noteName from 'noteTitle'
-				String noteName = noteTitle.getText();
-				// Sends noteName to removeNote in Notes
-				notes.removeNote(noteName);
-				//Refresh noteListView
-				newNote();
-				updateNoteList();
+			// TODO Confirmation box
+      // Get noteName from 'noteTitle'
+			String noteName = noteTitle.getText();
+			// Sends noteName to removeNote in Notes
+			notes.removeNote(noteName);
+			//Refresh note and noteListView
+			newNote();
+			updateNoteList();
     }
 
     @FXML
     private void newNote(){
-			noteTitle.setText("Note Title");
+			// Clear text
+      noteTitle.setText(null);
+			noteTitle.setPromptText("Untitled Note");
 			notePad.setText(null);
     }
 
     @FXML
     private void saveNote() throws FileNotFoundException{
-				// Get noteName from 'noteTitle'
-				String noteName = noteTitle.getText();
-				// Get content from 'notePad'
-				String content = notePad.getText();
-				// Sends noteName to updateNote in Notes
-				notes.updateNote(noteName, content);
-				// Update list
-                                updateNoteList();
+			// Get noteName from 'noteTitle'
+			String noteName = noteTitle.getText();
+			// Get content from 'notePad'
+			String content = notePad.getText();
+			// Sends noteName to updateNote in Notes
+			notes.updateNote(noteName, content);
+			// Update list
+      updateNoteList();
     }
 
     @FXML
     private void toggleFav(){
-        System.out.println("FAV toggle");
-				// TODO toggles favorite value on note data.
-        // Need to save this somewhere in the file
+      System.out.println("FAV toggle");
+			// TODO toggles favorite value on note data.
+      // Need to save this somewhere in the file
     }
-                // Link to keyword. Re-Write previous if statement
-    // If charAt(0) > 64 ; All the alphabetical characters in the ascii index are greater
+
 		public void displayNote(String noteName){
 			char cmd = noteName.charAt(0);
-
-			if (!Character.isLetter(cmd)) {
-                                System.out.println(cmd);
-				// Hide buttons
-				saveBtn.setVisible(false);
-                                newBtn.setVisible(false);
-                                removeBtn.setVisible(false);
-				if (cmd == '!') {
-					noteTitle.setText(notes.findByID(noteName));
-
+			// Check to see if searching for keyword or note
+			// If displaying keyword info
+			if (!Character.isLetter(cmd) && cmd != '*') {
+					// Hide buttons
+					saveBtn.setVisible(false);
+	        newBtn.setVisible(false);
+	        removeBtn.setVisible(false);
+					//If unique ID display note
+					if (cmd == '!') {
+						noteTitle.setText(notes.findByID(noteName));
+					}
+					// Else display keyword matches
+					else{
+						noteTitle.setText(noteName);
+					}
+					notePad.setText(notes.getKeywordInfo(noteName));
+					// Set so user cannont edit results
+					noteTitle.setEditable(false);
+					notePad.setEditable(false);
+					// Exit method
+					return;
 				}
-				else{
-					noteTitle.setText(noteName);
-				}
-				notePad.setText(notes.getKeywordInfo(noteName));
-				// User cannont edit
-				noteTitle.setEditable(false);
-				notePad.setEditable(false);
-				return;
-			}
-			// MAke sure buttons are visible and user can edit
+			// If displaying note
+			// Make sure buttons are visible
 			saveBtn.setVisible(true);
-															newBtn.setVisible(true);
-															removeBtn.setVisible(true);
-					noteTitle.setText(noteName);
-					notePad.setText(notes.getNote(noteName));
-					noteTitle.setEditable(true);
-					notePad.setEditable(true);
+			newBtn.setVisible(true);
+			removeBtn.setVisible(true);
+			// Display title and text
+			noteTitle.setText(noteName);
+			notePad.setText(notes.getNote(noteName));
+			// Allow user to edit
+			noteTitle.setEditable(true);
+			notePad.setEditable(true);
 		}
 
 		public void updateNoteList(){
-                    // Get noteName from 'noteTitle'
-				String noteName = noteTitle.getText();
-				// Get content from 'notePad'
-				String content = notePad.getText();
+	    // Get noteName from 'noteTitle'
+			String noteName = noteTitle.getText();
+			// Get content from 'notePad'
+			String content = notePad.getText();
 			// Get list of note names from "Notes"
 			noteList = FXCollections.observableArrayList(notes.allNames());
+			// Clear previous list
 			noteListView.getItems().clear();
 			// Add Items noteListView
 			noteListView.getItems().addAll(noteList);
-			// Add event listeners to list
-			noteListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-	      @Override
-	      public void changed(ObservableValue<? extends String> ov, String old_val, String selected) {
-	          displayNote(selected);
-			  }
-		  });
-                        // Reset notes value
-                        noteTitle.setText(noteName);
-                        notePad.setText(content);
+      // Reset notes value
+      noteTitle.setText(noteName);
+      notePad.setText(content);
 		}
 
 
@@ -211,11 +218,17 @@ public class NoteAppGUIController {
 				while(selectedDirectory == null){
 					selectedDirectory = directoryChooser.showDialog(null);
 				}
-
-        // Create notes - send directory path
+        // Create notes - send directory path to notes
         this.notes = new Notes(selectedDirectory.getAbsolutePath());
-        // Set List View Items
+        // Set List
 				updateNoteList();
+				// Add event listeners to list
+				noteListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+		      @Override
+		      public void changed(ObservableValue<? extends String> ov, String old_val, String selected) {
+		          displayNote(selected);
+				  }
+			  });
 				// Set values for sortBox
         sortBox.setItems(sorts);
     }

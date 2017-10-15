@@ -31,6 +31,12 @@ public class NoteRetriever{
 
 		return content;
 	}
+	public ArrayList<String> getFavorites(){
+		// Check for favorites file
+		// Create one if it doesn't exists
+		// Read favorites file
+		//  Return list of favorite
+	}
 
 	public TreeMap<String, String> getFiles(String dirPath){
 		TreeMap<String, String> files = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
@@ -40,7 +46,9 @@ public class NoteRetriever{
 		for (String file: fileNames) {
 			files.put(file, readFile(file, dirPath));
 		}
-
+		// TODO
+		// Check for favorites file - *fav*.txt
+		// Remove if present
 		return files;
 	}
 }
