@@ -228,6 +228,8 @@ public class NoteAppGUIController {
 			noteListView.getItems().clear();
 			// Add Items noteListView
 			noteListView.getItems().addAll(noteList);
+			// Check to see if favorite
+			favToggle.setSelected(notes.checkFav(noteName));
       // Reset notes value
       noteTitle.setText(noteName);
       notePad.setText(content);

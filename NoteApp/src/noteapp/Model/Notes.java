@@ -15,8 +15,7 @@ import java.util.logging.Logger;
  	TreeMap<String,ArrayList<String>> mentions 	= new TreeMap<>();
  	// Key: #identifier Value: fileNames
  	TreeMap<String,ArrayList<String>> topics 		= new TreeMap<>();
-	// List of Favorited note names
-	//*favs*.txt
+	// List of Favorited note names. File: *favs*.txt
 	ArrayList<String> favs = new ArrayList<>();
 
  	NoteRetriever retriever = new NoteRetriever();
@@ -164,6 +163,7 @@ import java.util.logging.Logger;
 	// Method for checking if a note is favorited
 	public boolean checkFav(String noteName){return favs.contains(noteName);}
 
+	// Methods for adding and removing favorites
 	public void addFavorite(String noteName){
 		// Add to ArrayList
     favs.add(noteName);
@@ -178,7 +178,6 @@ import java.util.logging.Logger;
                  Logger.getLogger(Notes.class.getName()).log(Level.SEVERE, null, ex);
              }
 	}
-
 	public void removeFavorite(String noteName){
 		// Remove from ArrayList
     favs.remove(noteName);
@@ -205,6 +204,7 @@ import java.util.logging.Logger;
  		sortNotes();
  	}
 
+	// Method for getting word count of a string
   public int countWords(String content){
     return sorter.countWords(content);
   }

@@ -37,10 +37,10 @@ public class NoteRetriever{
 		ArrayList<String> favorites = new ArrayList<>();
 		// Check for favorites file
 		String favPath = dirPath + "/*favs*.txt";
-		File favsFile = new File(favPath);
-		// Checks if file exists and
-		// Create one if it doesn't exists
-		favsFile.createNewFile();
+		// File favsFile = new File(favPath);
+		// // Checks if File: *favs*.txt exists
+		// // Create if it doesn't exists
+		// favsFile.createNewFile();
 		// Read favorites file
 		String content = readFile("*favs*.txt", dirPath);
 		try (Stream<String> lines = Files.lines(Paths.get(favPath))) {
