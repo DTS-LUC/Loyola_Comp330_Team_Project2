@@ -16,7 +16,7 @@
             <JFXListView fx:id="noteListView" layoutY="58.0" prefHeight="472.0" prefWidth="241.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="58.0" />
             <JFXTextField fx:id="searchField" focusColor="WHITE" layoutX="86.0" layoutY="10.0" prefHeight="28.0" prefWidth="114.0" promptText="Search..." unFocusColor="#999999" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="10.0" />
             <JFXComboBox fx:id="sortBox" focusColor="WHITE" layoutX="14.0" layoutY="10.0" prefHeight="28.0" prefWidth="74.0" promptText="Sort" unFocusColor="#999999" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="158.0" AnchorPane.topAnchor="10.0" />
-            <JFXButton fx:id="findBtn" layoutX="205.0" layoutY="11.0" onAction="#search" opacity="0.81" prefHeight="26.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" text="Find" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="11.0" />
+            <JFXButton fx:id="findBtn" layoutX="205.0" layoutY="11.0" onAction="#search" opacity="0.81" prefHeight="26.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" text="Find" textAlignment="CENTER" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="11.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="253.0" prefHeight="503.0" prefWidth="525.0" style="-fx-background-color: #f8ecc2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -46,7 +46,12 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <JFXTextArea fx:id="notePad" layoutY="80.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="58.0" />
+            <JFXTextArea fx:id="notePad" layoutY="80.0" onKeyReleased="#countWords" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="58.0" />
+            <JFXTextField fx:id="wordCount" alignment="BASELINE_CENTER" editable="false" layoutX="463.0" layoutY="499.0" prefHeight="25.0" prefWidth="50.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
          </children>
       </AnchorPane>
    </children>

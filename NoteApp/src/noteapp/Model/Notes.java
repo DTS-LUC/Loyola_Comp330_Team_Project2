@@ -204,4 +204,8 @@ import java.util.logging.Logger;
 		// Re-sort
  		sortNotes();
  	}
+
+  public int countWords(String content){
+    return sorter.countWords(content);
+  }
  }

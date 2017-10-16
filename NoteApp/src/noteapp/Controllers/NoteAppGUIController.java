@@ -58,6 +58,8 @@ public class NoteAppGUIController {
 		private JFXListView<String> noteListView;
 		@FXML
 		private JFXTextArea notePad;
+                @FXML
+                private JFXTextField wordCount;
 
 // ActionEvent Methods
 
@@ -160,9 +162,17 @@ public class NoteAppGUIController {
       updateNoteList();
     }
 
+		@FXML
+		private void countWords(){
+			// Get text content
+			String content = notePad.getText();
+			// Count number of words
+			int numWords = notes.countWords(content);
+			wordCount.setText(numWords+"");
+		}
 
 		public void displayNote(String noteName){
-			// TODO check to see if favorite
+			// Check to see if favorite
 			favToggle.setSelected(notes.checkFav(noteName));
 			// Check to see if searching for keyword or note
 			char cmd = noteName.charAt(0);
@@ -173,6 +183,8 @@ public class NoteAppGUIController {
 					saveBtn.setVisible(false);
 	        newBtn.setVisible(false);
 	        removeBtn.setVisible(false);
+                wordCount.setVisible(false);
+					//TODO Hide word count
 					//If unique ID display note
 					if (cmd == '!') {
 						noteTitle.setText(notes.findByID(noteName));
@@ -194,9 +206,12 @@ public class NoteAppGUIController {
 			saveBtn.setVisible(true);
 			newBtn.setVisible(true);
 			removeBtn.setVisible(true);
+                        wordCount.setVisible(true);
 			// Display title and text
 			noteTitle.setText(noteName);
 			notePad.setText(notes.getNote(noteName));
+                        //Show and set word count
+                        countWords();
 			// Allow user to edit
 			noteTitle.setEditable(true);
 			notePad.setEditable(true);

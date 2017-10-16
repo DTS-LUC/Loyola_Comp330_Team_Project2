@@ -84,19 +84,11 @@ public class NoteSorter{
 	  return matches;
 	}
 
-	// public static int countMatches(String theRegex, String key)
-	// {
-	// 	Pattern checkRegex = Pattern.compile(theRegex);
-	// 	Matcher regexMatcher = pat.matcher(key); // Cannot find pat
-	// 	int total =0;
-	// 	while(regexMatcher.find())
-	// 	{
-	// 		if (regexMatcher.group().length() == 0) {
-	// 					// What is the following line used for?
-	// 					matches.add(regexMatcher.group().trim()); // Cannot find matches
-	// 					total++;
-	// 				}
-	// 	}
-	// 	return total;
-	// }
+	public static int countWords(String content)
+	  {
+		HashSet<String> words = new HashSet<>();
+		words = regexChecker("\\b\\S+\\b", content);
+		  
+	  	return (words.size());
+	  }
 }
