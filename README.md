@@ -12,6 +12,7 @@
 ![Alt text](/GUIScreenshots/NotePad.png?raw=true "Note Pad")
   * The Note Pad displays the note or keyword data
   * When displaying a note the user can update the text area
+  * The number in the bottom left displays the word count of the current text
   * To save changes made to the note click the blue **_save_** button
   * To start a new note click the green **_new_** button
   * To remove the current note click the red **_remove_** button
@@ -20,7 +21,7 @@
 
 ### Note List 
 ![Alt text](/GUIScreenshots/NoteList.png?raw=true "Note List")
-  * Click to select notes and sort matches
+  * Click to select notes or search results
   * Filter list content using the Sort Box and Search Bar described below
 
 ### Search Bar 
