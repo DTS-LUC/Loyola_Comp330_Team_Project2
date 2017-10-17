@@ -9,20 +9,9 @@
 
 ## User Instructions 
 (In progress: Expand and add photos)
-#### @ [optional identifier]
-  * To return a list of all mentions use only "@"
-  * User may search for as many mentions as desired
-  * Identifiers must be separated by spaces
-
-#### # [optional identifier]
-  * To return a list of all keywords use only "#"
-  * User may search for as many keyword as desired
-  * Identifiers must be separated by spaces
-
-#### ! [optional identifier]
-  * To return a list of all ids use only "!"
-  * User may search for as many ids as desired
-  * Identifiers must be separated by spaces
-  
-#### * [no identifiers] 
-  * Returns a list of favorited notes
+#### Sort Box Options
+  * **Name** - Returns sorted list of all Notes
+  * **@** - Returns sorted list of all mentions, selection displays list of matches
+  * **#** - Returns sorted list of all keywords, selection displays list of matches
+  * **!** - Returns sorted list of all unique ids, selection displays note
+  * **\*** - Returns sorted list of all Notes
