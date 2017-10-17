@@ -17,11 +17,11 @@
 
 #### Sort Box Options 
 ![Alt text](/GUIScreenshots/SortBoxScreenshot.png?raw=true "Sort Box")
-  * **Name** - Returns sorted list of all Notes
+  * **Name** - Returns sorted list of all notes
   * **@** - Returns sorted list of all mentions, selection displays list of matches
   * **#** - Returns sorted list of all keywords, selection displays list of matches
   * **!** - Returns sorted list of all unique ids, selection displays note
-  * **\*** - Returns sorted list of all Notes
+  * **\*** - Returns sorted list of all favorited notes
   
 #### Search Bar 
 ![Alt text](/GUIScreenshots/SearchBar.png?raw=true "Search Bar")
