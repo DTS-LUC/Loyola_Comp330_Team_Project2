@@ -2,7 +2,7 @@
 ###### Team ST - Donald Stolz, Michael Sukantawanich, Kamalesh Srikanth, Eduardo Soto
 
 ## Setup Instructions
-1. Download Repository
+1. Download the repository
 2. Navigate to **_NoteApp/dist_**
 3. Open **_NoteApp.jar_**
 4. Select desired folder
