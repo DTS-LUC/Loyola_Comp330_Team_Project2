@@ -1,12 +1,13 @@
- package noteapp.Model;
+package noteapp.Model;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
- import java.util.*;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
- public class Notes{
+// @author donald-stolz
+public class Notes{
  	// Key: fileName 	Value: content
  	TreeMap<String,String> files	= new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
  	// Key: ^id 			Value: fileName
@@ -27,7 +28,6 @@ import java.util.logging.Logger;
  	public Notes(String dirPath) throws IOException{
  		this.dirPath = dirPath;
  		this.files = retriever.getFiles(dirPath);
-		// Get favorites
 		this.favs = retriever.getFavorites(dirPath);
 		sortNotes();
  	}
@@ -80,7 +80,7 @@ import java.util.logging.Logger;
  	// Method for retrieving file names that match select Mention value(s)
  	public ArrayList<String> matchMentions(String search){
  		ArrayList<String> selected = new ArrayList<>(mentions.get("@" + search));
-
+		// Make sure list isn't empty
     if(selected.isEmpty()){
         selected.add("No results");
     }
@@ -95,7 +95,7 @@ import java.util.logging.Logger;
  	// Method for retrieving file names that match select Topic value(s)
 	public ArrayList<String> matchTopics(String search){
  		ArrayList<String> selected = new ArrayList<>(topics.get("#" + search));;
-
+		// Make sure list isn't empty
 	  if(selected.isEmpty()){
 	      selected.add("No results");
 	  }
@@ -103,16 +103,15 @@ import java.util.logging.Logger;
 			String name = selected.get(i);
 	    name = name.substring(0, name.lastIndexOf("."));
 			selected.set(i, name);
-												}
+		}
 		return selected;
  		}
 
  	// Method for retrieving file names that match select ID value(s)
 	public String matchId(String search){
- 		String selected;
-
+ 			String selected;
  			selected = ids.get("!" + search);
-                        selected = selected.substring(0, selected.lastIndexOf("."));
+      selected = selected.substring(0, selected.lastIndexOf("."));
 			return selected;
  		}
 
@@ -159,6 +158,17 @@ import java.util.logging.Logger;
  		// Re-sort
  		sortNotes();
  	}
+	// Method for removing a note
+	public void removeNote(String noteName) throws IOException{
+		String fileName = noteName +".txt";
+		String filePath = dirPath + "/" +fileName;
+		// Remove from file System
+		editor.removeFile(filePath);
+		// Remove from files map
+		files.remove(fileName);
+		// Re-sort
+		sortNotes();
+	}
 
 	// Method for checking if a note is favorited
 	public boolean checkFav(String noteName){return favs.contains(noteName);}
@@ -192,20 +202,8 @@ import java.util.logging.Logger;
              }
 	}
 
- 	// Method for removing a note
- 	public void removeNote(String noteName) throws IOException{
- 		String fileName = noteName +".txt";
- 		String filePath = dirPath + "/" +fileName;
-    // Remove from file System
-    editor.removeFile(filePath);
-    // Remove from files map
-    files.remove(fileName);
-		// Re-sort
- 		sortNotes();
- 	}
-
 	// Method for getting word count of a string
   public int countWords(String content){
     return sorter.countWords(content);
   }
- }
+}

@@ -3,6 +3,8 @@ package noteapp.Model;
 import java.util.regex.*;
 import java.util.*;
 
+// @author donald-stolz
+// This class contains the regexChecker for sorting notes and counting words
 public class NoteSorter{
 
 	public TreeMap<String,ArrayList<String>> sort(TreeMap<String,String> files, String regPattern){
@@ -29,18 +31,15 @@ public class NoteSorter{
 	        tempList = tm.get(m);
 	        tempList.add(fileName);
 	        tm.put(m, tempList);
-	        // System.out.println(tempList);
 	      }
 	      else {
 	        // False: Add key - value
 	        tempList = new ArrayList<String>();
 	        tempList.add(fileName);
 	        tm.put(m, tempList);
-	        // System.out.println(tm);
-		      }
-			   }
-			  }
-
+				}
+			 }
+			}
 	  return tm;
 	}
 
@@ -84,11 +83,12 @@ public class NoteSorter{
 	  return matches;
 	}
 
-	public static int countWords(String content)
-	  {
+	// @author msukan
+	public static int countWords(String content){
+		// Uses regex regexChecker to seperate words
 		HashSet<String> words = new HashSet<>();
 		words = regexChecker("\\b\\S+\\b", content);
-		  
-	  	return (words.size());
-	  }
+		// Returns size of the matching set
+	  return (words.size());
+	}
 }

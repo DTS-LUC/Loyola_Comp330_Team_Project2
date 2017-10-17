@@ -46,7 +46,7 @@ public class NoteAppGUIController {
 		private JFXTextField noteTitle;
 		@FXML
 		private JFXToggleButton favToggle;
-                @FXML
+    @FXML
 		private JFXButton findBtn;
 		@FXML
 		private JFXButton saveBtn;
@@ -58,8 +58,8 @@ public class NoteAppGUIController {
 		private JFXListView<String> noteListView;
 		@FXML
 		private JFXTextArea notePad;
-                @FXML
-                private JFXTextField wordCount;
+    @FXML
+    private JFXTextField wordCount;
 
 // ActionEvent Methods
 
@@ -67,6 +67,7 @@ public class NoteAppGUIController {
 		public void toggleFav(){
 			// Get noteName
 			String noteName = noteTitle.getText();
+			// Check to see whether toggling on or off
 			if (favToggle.isSelected()) {
 				notes.addFavorite(noteName);
 			}else{
@@ -144,7 +145,7 @@ public class NoteAppGUIController {
 
     @FXML
     private void newNote(){
-			// Clear text
+			// Clear text and title
       noteTitle.setText(null);
 			noteTitle.setPromptText("Untitled Note");
 			notePad.setText(null);
@@ -176,15 +177,15 @@ public class NoteAppGUIController {
 			favToggle.setSelected(notes.checkFav(noteName));
 			// Check to see if searching for keyword or note
 			char cmd = noteName.charAt(0);
-			// If displaying keyword info
+			// If displaying keyword info:
 			if (!Character.isLetter(cmd) && cmd != '*') {
-					// Hide buttons
+					// Hide buttons and word count
 					favToggle.setVisible(false);
 					saveBtn.setVisible(false);
 	        newBtn.setVisible(false);
 	        removeBtn.setVisible(false);
-                wordCount.setVisible(false);
-					//TODO Hide word count
+          wordCount.setVisible(false);
+
 					//If unique ID display note
 					if (cmd == '!') {
 						noteTitle.setText(notes.findByID(noteName));
@@ -200,19 +201,19 @@ public class NoteAppGUIController {
 					// Exit method
 					return;
 				}
-			// If displaying note
-			// Make sure buttons are visible
+			// If displaying note:
+			// Make sure buttons and word count are visible
 			favToggle.setVisible(true);
 			saveBtn.setVisible(true);
 			newBtn.setVisible(true);
 			removeBtn.setVisible(true);
-                        wordCount.setVisible(true);
+      wordCount.setVisible(true);
 			// Display title and text
 			noteTitle.setText(noteName);
 			notePad.setText(notes.getNote(noteName));
-                        //Show and set word count
-                        countWords();
-			// Allow user to edit
+      //Show and set word count
+      countWords();
+			// Allow user to edit note
 			noteTitle.setEditable(true);
 			notePad.setEditable(true);
 		}
@@ -251,11 +252,9 @@ public class NoteAppGUIController {
 				updateNoteList();
 				// Add event listeners to list
 				noteListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-		      @Override
-		      public void changed(ObservableValue<? extends String> ov, String old_val, String selected) {
-		          displayNote(selected);
-				  }
-			  });
+	      @Override
+	      public void changed(ObservableValue<? extends String> ov, String old_val, String selected){
+					displayNote(selected);}});
 				// Set values for sortBox
         sortBox.setItems(sorts);
     }
