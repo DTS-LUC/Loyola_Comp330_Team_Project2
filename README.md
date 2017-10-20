@@ -4,7 +4,7 @@
 ## Setup Instructions
 1. Download the repository
 2. Navigate to **_NoteApp/dist_**
-3. Open **_NoteApp.jar_**
+3. Right-click to open **_NoteApp.jar_**
 4. Select desired folder
 
 ## User Instructions 
