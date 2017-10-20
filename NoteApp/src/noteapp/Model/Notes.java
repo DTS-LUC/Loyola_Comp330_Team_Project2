@@ -47,8 +47,9 @@ public class Notes{
  	// Methods for retrieving all values in sorted order
   public ArrayList<String> allNames(){
 	  ArrayList<String> names = new ArrayList<>();
-          names.addAll(files.keySet());
+    names.addAll(files.keySet());
     // String name : names
+    // Remove .txt extension
 		for (int i = 0; i < names.size(); i++) {
 			String name = names.get(i);
       name = name.substring(0, name.lastIndexOf("."));
@@ -79,40 +80,47 @@ public class Notes{
 
  	// Method for retrieving file names that match select Mention value(s)
  	public ArrayList<String> matchMentions(String search){
- 		ArrayList<String> selected = new ArrayList<>(mentions.get("@" + search));
-		// Make sure list isn't empty
-    if(selected.isEmpty()){
-        selected.add("No results");
-    }
-		for (int i = 0; i < selected.size(); i++) {
-			String name = selected.get(i);
-      name = name.substring(0, name.lastIndexOf("."));
-			selected.set(i, name);
-		}
-		return selected;
+      ArrayList<String> selected = new ArrayList<>();
+      if(mentions.containsKey("@" + search)){
+      selected = mentions.get("@" + search);
+  		for (int i = 0; i < selected.size(); i++) {
+  			String name = selected.get(i);
+        name = name.substring(0, name.lastIndexOf("."));
+  			selected.set(i, name);
+  		}}
+      else{
+        selected.add("No results.");
+      }
+      return selected;
 		}
 
  	// Method for retrieving file names that match select Topic value(s)
 	public ArrayList<String> matchTopics(String search){
- 		ArrayList<String> selected = new ArrayList<>(topics.get("#" + search));;
-		// Make sure list isn't empty
-	  if(selected.isEmpty()){
-	      selected.add("No results");
-	  }
-		for (int i = 0; i < selected.size(); i++) {
-			String name = selected.get(i);
-	    name = name.substring(0, name.lastIndexOf("."));
-			selected.set(i, name);
-		}
-		return selected;
+    ArrayList<String> selected = new ArrayList<>();
+    if(mentions.containsKey("#" + search)){
+    selected = mentions.get("#" + search);
+    for (int i = 0; i < selected.size(); i++) {
+      String name = selected.get(i);
+      name = name.substring(0, name.lastIndexOf("."));
+      selected.set(i, name);
+    }}
+    else{
+      selected.add("No results.");
+    }
+    return selected;
  		}
 
  	// Method for retrieving file names that match select ID value(s)
 	public String matchId(String search){
  			String selected;
- 			selected = ids.get("!" + search);
-      selected = selected.substring(0, selected.lastIndexOf("."));
-			return selected;
+      if (ids.containsKey("!" + search)) {
+        selected = ids.get("!" + search);
+        selected = selected.substring(0, selected.lastIndexOf("."));
+      }
+      else {
+        selected = "No results";
+      }
+      return selected;
  		}
 
   // Method for retrieving note contents

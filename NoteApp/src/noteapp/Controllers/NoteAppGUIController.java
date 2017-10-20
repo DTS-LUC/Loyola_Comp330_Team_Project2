@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author don
@@ -31,12 +25,13 @@ import javafx.stage.DirectoryChooser;
 import noteapp.Model.Notes;
 
 public class NoteAppGUIController {
-// Notes
+
+// Data Objects
 		private Notes notes;
-// Lists
 		private ObservableList<String> sorts = FXCollections.observableArrayList("Name","@", "#", "!", "*");
 		private List<String> noteList = new ArrayList<>();
 		private List<String> keywordList = new ArrayList<>();
+
 // JFX Objects
 		@FXML
 		private JFXTextField searchField;
@@ -62,7 +57,6 @@ public class NoteAppGUIController {
     private JFXTextField wordCount;
 
 // ActionEvent Methods
-
 		@FXML
 		public void toggleFav(){
 			// Get noteName
@@ -131,7 +125,8 @@ public class NoteAppGUIController {
 			// Add Items noteListView
 			noteListView.getItems().addAll(keywordList);
 		}
-    @FXML
+
+		@FXML
     private void removeNote(ActionEvent e) throws IOException{
 			// TODO Confirmation box
       // Get noteName from 'noteTitle'
@@ -251,10 +246,9 @@ public class NoteAppGUIController {
         // Set List
 				updateNoteList();
 				// Add event listeners to list
-				noteListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-	      @Override
-	      public void changed(ObservableValue<? extends String> ov, String old_val, String selected){
-					displayNote(selected);}});
+				noteListView.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends String> ov, String old_val, String selected) -> {
+                                    displayNote(selected);
+        });
 				// Set values for sortBox
         sortBox.setItems(sorts);
     }
